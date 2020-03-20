@@ -8,5 +8,9 @@
   "language_english": "Engels",
   "language_spanish": "Spaans",
   "language_dutch" : "Nederlands",
-  "language_italian": "Italiaans"
+  "language_italian": "Italiaans",
+
+  "start_screen_1_text": "1. Welke loterij wil je spelen?",
+  "start_screen_2_text": "2. Hoeveel geluksnummers wil je genereren?",
+  "start_screen_3_text": "3. Op hoeveel speelvelden moeten de nummers worden verdeeld?"
 }

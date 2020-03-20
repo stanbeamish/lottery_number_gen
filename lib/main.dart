@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:lotterynumbergen/data/lottery_field.dart';
+import 'package:lotterynumbergen/data/lottery_system.dart';
+import 'package:lotterynumbergen/providers/generation_data_provider.dart';
 import 'package:lotterynumbergen/providers/language_provider.dart';
 import 'package:lotterynumbergen/providers/theme_provider.dart';
+import 'package:lotterynumbergen/screens/gen_result_screen.dart';
 import 'package:lotterynumbergen/screens/settings_screen.dart';
 import 'package:lotterynumbergen/screens/start_screen.dart';
 import 'package:lotterynumbergen/utils/app_localization.dart';
@@ -42,8 +46,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return ChangeNotifierProvider<AppLanguageProvider>(
-      create: (_) => appLanguageProvider,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AppLanguageProvider>(create: (_) => appLanguageProvider),
+        ChangeNotifierProvider<GenerationDataProvider>(create: (_) => GenerationDataProvider(
+          GenerationData(
+            selectedSystem: SupportedSystems.euroJackpot, // initialize with defaults
+            selectedNumbersCount: 8,
+            selectedFieldCount: SupportedFields.four,
+          )
+        ),),
+      ],
       child: Consumer<AppLanguageProvider>(
         builder: (context, model, child) {
           return MaterialApp(
@@ -66,6 +79,7 @@ class MyApp extends StatelessWidget {
             routes: {
               StartScreen.id: (context) => StartScreen(),
               SettingsScreen.id: (context) => SettingsScreen(),
+              GenResultScreen.id: (context) => GenResultScreen(),
             },
             initialRoute: StartScreen.id,
           );

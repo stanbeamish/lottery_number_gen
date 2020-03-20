@@ -10,6 +10,15 @@ final darkMode = ThemeData(
   accentColor: Colors.white,
   accentIconTheme: IconThemeData(color: Colors.black),
   dividerColor: Colors.black12,
+  unselectedWidgetColor: kColorTwo,
+  toggleableActiveColor: kColorOne,
+  sliderTheme: SliderThemeData(
+    activeTickMarkColor: kColorOne,
+    activeTrackColor: kColorOne,
+    thumbColor: kColorOne,
+    valueIndicatorColor: kColorThree,
+  ),
+  buttonColor: kColorThree,
 );
 
 final lightMode = ThemeData(
@@ -21,4 +30,12 @@ final lightMode = ThemeData(
   accentColor: Colors.black,
   accentIconTheme: IconThemeData(color: Colors.white),
   dividerColor: Colors.white54,
+  toggleableActiveColor: kColorThree,
+  sliderTheme: SliderThemeData(
+    activeTickMarkColor: kColorThree,
+    activeTrackColor: kColorThree,
+    thumbColor: kColorThree,
+    valueIndicatorColor: kColorOne,
+  ),
+  buttonColor: kColorSix,
 );

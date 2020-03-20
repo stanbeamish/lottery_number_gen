@@ -8,5 +8,9 @@
   "language_english": "Inglese",
   "language_spanish": "Spagnolo",
   "language_dutch" : "Olandese",
-  "language_italian": "Italiano"
+  "language_italian": "Italiano",
+
+  "start_screen_1_text": "1. A quale lotteria vuoi giocare?",
+  "start_screen_2_text": "2. Quanti numeri fortunati vuoi generare?",
+  "start_screen_3_text": "3. Su quanti campi da gioco devono essere distribuiti i numeri?"
 }

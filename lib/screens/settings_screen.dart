@@ -91,7 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 dayColor: kColorFour,
                 nightColor: kColorOne,
                 moonColor: kColorFour,
-                value: _darkTheme,
+                value: themeProvider.getTheme() == darkMode ? true : false,
                 onChanged: (value) {
                   setState(() {
                     _darkTheme = value;
