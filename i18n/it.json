@@ -1,0 +1,12 @@
+{
+  "start_screen_title": "Generatore di Numeri della Lotteria",
+  "settings_screen_title": "Impostazioni",
+  "settings_screen_theme": "Seleziona Tema",
+  "settings_screen_language": "Seleziona Lingua",
+
+  "language_german": "Tedesco",
+  "language_english": "Inglese",
+  "language_spanish": "Spagnolo",
+  "language_dutch" : "Olandese",
+  "language_italian": "Italiano"
+}

@@ -1,0 +1,12 @@
+{
+  "start_screen_title": "Lotterie Nummern-Generator",
+  "settings_screen_title": "Einstellungen",
+  "settings_screen_theme": "Theme auswählen",
+  "settings_screen_language": "Sprache auswählen",
+
+  "language_german": "Deutsch",
+  "language_english": "Englisch",
+  "language_spanish": "Spanisch",
+  "language_dutch" : "Niederländisch",
+  "language_italian": "Italienisch"
+}
