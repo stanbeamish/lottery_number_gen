@@ -108,7 +108,7 @@ class _StartScreenState extends State<StartScreen> {
               generationData.selectedNumbersCount = _numCnt.toInt();
             });
           },
-          divisions: 4,
+          divisions: 6,
           min: minLotteryNumber,
           max: maxLotteryNumber,
           label: '${_numCnt.toInt()}',
