@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lotterynumbergen/data/lottery_field.dart';
+import 'package:lotterynumbergen/data/lottery_number.dart';
 import 'package:lotterynumbergen/data/lottery_system.dart';
 import 'package:lotterynumbergen/providers/generation_data_provider.dart';
 import 'package:lotterynumbergen/providers/language_provider.dart';
@@ -51,10 +52,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<AppLanguageProvider>(create: (_) => appLanguageProvider),
         ChangeNotifierProvider<GenerationDataProvider>(create: (_) => GenerationDataProvider(
           GenerationData(
-            selectedSystem: SupportedSystems.euroJackpot, // initialize with defaults
-            selectedNumbersCount: 8,
-            selectedFieldCount: SupportedFields.four,
-          )
+            selectedSystem: supportedLotterySystems[0], // initialize with defaults
+            selectedLotteryField: supportedLotteryFields[4],
+            selectedLotteryNumber: supportedLotteryNumbers[0],
+          ),
         ),),
       ],
       child: Consumer<AppLanguageProvider>(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lotterynumbergen/data/lottery_field.dart';
+import 'package:lotterynumbergen/data/lottery_number.dart';
 import 'package:lotterynumbergen/data/lottery_system.dart';
 
 class GenerationDataProvider extends ChangeNotifier {
@@ -18,13 +19,13 @@ class GenerationDataProvider extends ChangeNotifier {
 }
 
 class GenerationData {
-  int selectedNumbersCount;
-  SupportedFields selectedFieldCount;
-  SupportedSystems selectedSystem;
+  LotteryNumber selectedLotteryNumber;
+  LotteryField selectedLotteryField;
+  LotterySystem selectedSystem;
 
   GenerationData({
-    this.selectedNumbersCount,
-    this.selectedFieldCount,
+    this.selectedLotteryNumber,
+    this.selectedLotteryField,
     this.selectedSystem,
   });
 

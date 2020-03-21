@@ -24,6 +24,12 @@ const kSmallBoldText = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const kSmallText = TextStyle(
+  fontStyle: FontStyle.normal,
+  fontSize: 14,
+  fontWeight: FontWeight.normal,
+);
+
 const kSmallItalicText = TextStyle(
   fontStyle: FontStyle.italic,
   fontSize: 14,

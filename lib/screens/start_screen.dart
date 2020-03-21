@@ -95,7 +95,9 @@ class _StartScreenState extends State<StartScreen> {
   }
 
   Widget _buildLotteryNumberSlider(BuildContext context) {
-    final generationDataProvider = Provider.of<GenerationDataProvider>(context);
+    final generationDataProvider = Provider.of<GenerationDataProvider>(context, listen: false);
+    // setting listen to false explicitly results in no rebuild of the Widget, 
+    // which is not really necesary
     generationData = generationDataProvider.getGenerationData();
 
     return Column(
@@ -105,7 +107,8 @@ class _StartScreenState extends State<StartScreen> {
           onChanged: (newNumCnt) {
             setState(() {
               _numCnt = newNumCnt;
-              generationData.selectedNumbersCount = _numCnt.toInt();
+
+              generationData.selectedLotteryNumber = supportedLotteryNumbers.firstWhere((element) => element.numberIdentifier == _numCnt);              
             });
           },
           divisions: 6,
@@ -133,7 +136,7 @@ class _StartScreenState extends State<StartScreen> {
   }
 
   Widget _buildLottoSystemSelection() {
-    final generationDataProvider = Provider.of<GenerationDataProvider>(context);
+    final generationDataProvider = Provider.of<GenerationDataProvider>(context, listen: false);
     generationData = generationDataProvider.getGenerationData();
 
     return Row(
@@ -151,7 +154,7 @@ class _StartScreenState extends State<StartScreen> {
               onChanged: (value) {
                 setState(() {
                   _lotSystem = value;
-                  generationData.selectedSystem = _lotSystem.systemIdentifier;
+                  generationData.selectedSystem = _lotSystem;
                 });
               },
             )
@@ -162,7 +165,7 @@ class _StartScreenState extends State<StartScreen> {
   }
 
   Widget _buildLotteryFieldSelection() {
-    final generationDataProvider = Provider.of<GenerationDataProvider>(context);
+    final generationDataProvider = Provider.of<GenerationDataProvider>(context, listen: false);
     generationData = generationDataProvider.getGenerationData();
 
     return Center(
@@ -182,7 +185,7 @@ class _StartScreenState extends State<StartScreen> {
                 onChanged: (value) {
                   setState(() {
                     _lotField = value;
-                    generationData.selectedFieldCount = _lotField.name;
+                    generationData.selectedLotteryField = _lotField;
                   });
                 },
               ),

@@ -6,6 +6,7 @@ const kColorThree = Color(0xFF9C9C02);
 const kColorFour = Color(0xFF403C3C);
 const kColorFive = Color(0xFFF0FCFE);
 const kColorSix = Color(0xFFADAD49);
+const kColorSeven = Color(0xFFFFFFCC);
 const int _kColorFour = 0xFF403C3C;
 
 Map<int, Color> appSwatchColorMap =
