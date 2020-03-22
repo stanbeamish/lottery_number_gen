@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:lotterynumbergen/data/lottery_field.dart';
-import 'package:lotterynumbergen/data/lottery_number.dart';
-import 'package:lotterynumbergen/data/lottery_system.dart';
+import 'package:lotterynumbergen/models/lottery_field.dart';
+import 'package:lotterynumbergen/models/lottery_number.dart';
+import 'package:lotterynumbergen/models/lottery_system.dart';
 
 class GenerationDataProvider extends ChangeNotifier {
   GenerationData _generationData;

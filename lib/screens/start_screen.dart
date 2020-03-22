@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:lotterynumbergen/data/lottery_field.dart';
-import 'package:lotterynumbergen/data/lottery_number.dart';
-import 'package:lotterynumbergen/data/lottery_system.dart';
+import 'package:lotterynumbergen/models/lottery_field.dart';
+import 'package:lotterynumbergen/models/lottery_number.dart';
+import 'package:lotterynumbergen/models/lottery_system.dart';
 import 'package:lotterynumbergen/providers/generation_data_provider.dart';
 import 'package:lotterynumbergen/screens/gen_result_screen.dart';
 import 'package:lotterynumbergen/screens/settings_screen.dart';

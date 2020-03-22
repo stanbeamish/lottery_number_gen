@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:lotterynumbergen/data/lottery_system.dart';
+import 'package:lotterynumbergen/models/lottery_system.dart';
 import 'package:lotterynumbergen/providers/generation_data_provider.dart';
 import 'package:lotterynumbergen/providers/theme_provider.dart';
 import 'package:lotterynumbergen/utils/app_colors.dart';
