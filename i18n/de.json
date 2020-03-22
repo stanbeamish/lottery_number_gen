@@ -15,10 +15,10 @@
   "start_screen_3_text": "3. Auf wieviel Spielfelder sollen die Zahlen verteilt werden?",
   "start_screen_btn_generate": "Generieren",
 
-  "genresults_screen_title": "Ergebis",
+  "genresults_screen_title": "Ergebnis",
   "genresults_screen_wantplay": "Dein gewähltes System",
   "genresults_screen_youwant": "Du möchtest",
   "genresults_screen_numbers": "Zahlen spielen",
-  "genresults_screen_hereareluckynumbers": "Hier sind Ihre Glückszahlen!",
+  "genresults_screen_hereareluckynumbers": "Hier sind deine Glückszahlen!",
   "genresults_screen_andgeneratedfields": "Und deine generierten Spielfelder ..."
 }

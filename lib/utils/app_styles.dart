@@ -47,3 +47,15 @@ const kTinyText = TextStyle(
   fontSize: 11,
   fontWeight: FontWeight.normal,
 );
+
+const kTinyBoldItalicText = TextStyle(
+  fontStyle: FontStyle.italic,
+  fontSize: 11,
+  fontWeight: FontWeight.bold,
+);
+
+const kTinyItalicText = TextStyle(
+  fontStyle: FontStyle.italic,
+  fontSize: 11,
+  fontWeight: FontWeight.normal,
+);

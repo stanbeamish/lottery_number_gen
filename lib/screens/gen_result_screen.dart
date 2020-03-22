@@ -12,84 +12,123 @@ import 'package:provider/provider.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class GenResultScreen extends StatelessWidget {
-  static String id = 'genresultscreen';  
+  static String id = 'genresultscreen';
 
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    var currentTheme = themeProvider.getTheme();
 
     return Consumer<GenerationDataProvider>(
       builder: (context, model, child) {
         List<int> _myNumbers = NumberGeneratorsUtils.generateNumbers(
-          model.getGenerationData().selectedLotteryNumber.numberIdentifier, 
+          model.getGenerationData().selectedLotteryNumber.numberIdentifier,
           model.getGenerationData().selectedSystem,
         );
 
-        double boxSize = model.getGenerationData().selectedSystem.systemIdentifier == SupportedSystems.sixOf49 
-          ? MediaQuery.of(context).size.width / 18
-          : MediaQuery.of(context).size.width / 24;
+        double boxSize =
+            model.getGenerationData().selectedSystem.systemIdentifier ==
+                    SupportedSystems.sixOf49
+                ? MediaQuery.of(context).size.width / 18
+                : MediaQuery.of(context).size.width / 24;
 
-        Color _boxColor = themeProvider.getTheme() == darkMode 
-          ? Colors.black87
-          : Colors.black38;
-        Color _innerBoxColor = themeProvider.getTheme() == darkMode 
-          ? kColorTwo
-          : kColorSeven;
+        Color _boxColor = currentTheme == darkMode
+            ? Colors.black87
+            : Colors.black38;
+
+        Color _innerBoxColor =
+            currentTheme == darkMode ? kColorTwo : kColorSeven;       
 
         return Scaffold(
           appBar: AppBar(
-            title: Text(AppTextUtils.getUIText(context, 'genresults_screen_title')),
+            title: Text(
+                AppTextUtils.getUIText(context, 'genresults_screen_title')),
           ),
           body: SingleChildScrollView(
             child: Container(
-              width: double.infinity,            
+              width: double.infinity,
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[                                                
-                  Text(AppTextUtils.getUIText(context, 'genresults_screen_wantplay')),
-                  Card(                      
+                children: <Widget>[
+                  Text(AppTextUtils.getUIText(
+                      context, 'genresults_screen_wantplay')),
+                  Card(
                     elevation: 5.0,
                     margin: const EdgeInsets.all(8.0),
-                    color: themeProvider.getTheme() == darkMode ? Colors.grey : Colors.grey[300],
+                    color: themeProvider.getTheme() == darkMode
+                        ? Colors.grey
+                        : Colors.grey[300],
                     child: ListTile(
                       leading: Icon(MaterialCommunityIcons.chess_queen),
-                        title: Text(
-                          model.getGenerationData().selectedSystem.name, style: kHeader1,                          
+                      title: Text(
+                        model.getGenerationData().selectedSystem.name,
+                        style: kHeader1,
                       ),
                     ),
                   ),
-                  Text(AppTextUtils.getUIText(context, 'genresults_screen_youwant')),
-                  Card(child: ListTile(
-                    leading: Icon(MaterialCommunityIcons.numeric_9_plus_box_multiple_outline),
-                    title: Text(model.getGenerationData().selectedLotteryNumber.numberIdentifier.toString(), style: kHeader1,))),
-                  Text(AppTextUtils.getUIText(context, 'genresults_screen_numbers'),),                  
+                  Text(AppTextUtils.getUIText(
+                      context, 'genresults_screen_youwant')),
+                  Card(
+                      child: ListTile(
+                          leading: Icon(MaterialCommunityIcons
+                              .numeric_9_plus_box_multiple_outline),
+                          title: Text(
+                            model
+                                .getGenerationData()
+                                .selectedLotteryNumber
+                                .numberIdentifier
+                                .toString(),
+                            style: kHeader1,
+                          ))),
+                  Text(
+                    AppTextUtils.getUIText(
+                        context, 'genresults_screen_numbers'),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0, bottom: 15.0),
-                    child: Container(                    
+                    child: Container(
                       height: 1,
                       width: double.infinity,
-                      color: themeProvider.getTheme() == darkMode ? kColorOne : kColorThree,
+                      color: themeProvider.getTheme() == darkMode
+                          ? kColorOne
+                          : kColorThree,
                     ),
                   ),
-                  Text(AppTextUtils.getUIText(context, 'genresults_screen_hereareluckynumbers'), style: kHeader1,),
+                  Text(
+                    AppTextUtils.getUIText(
+                        context, 'genresults_screen_hereareluckynumbers'),
+                    style: kHeader1,
+                  ),
                   _generateNumbersList(
                     _myNumbers,
                   ),
                   Text(
-                    AppTextUtils.getUIText(context, 'genresults_screen_andgeneratedfields'), 
+                    AppTextUtils.getUIText(
+                        context, 'genresults_screen_andgeneratedfields'),
                     style: kSmallBoldText,
                   ),
-                  SizedBox(height: 15.0,),
+                  SizedBox(
+                    height: 15.0,
+                  ),
                   Center(
                     child: Wrap(
                       runSpacing: 10.0,
-                      spacing: 10.0,                                                          
-                      children: 
-                        _buildAllLottoGrids(boxSize, _boxColor, _innerBoxColor, _myNumbers, model, model.getGenerationData().selectedLotteryField.numberIdentifier,)
-                      ,
+                      spacing: 10.0,
+                      children: _buildAllLottoGrids(
+                        boxSize,
+                        _boxColor,
+                        _innerBoxColor,
+                        _myNumbers,
+                        model,
+                        currentTheme,
+                        model
+                            .getGenerationData()
+                            .selectedLotteryField
+                            .numberIdentifier,
+                      ),
                     ),
-                  ),                
+                  ),
                 ],
               ),
             ),
@@ -99,34 +138,72 @@ class GenResultScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildAllLottoGrids(double boxSize, Color _boxColor, Color _innerBoxColor, List<int> _myNumbers, GenerationDataProvider model, int number) {
+  List<Widget> _buildAllLottoGrids(
+      double boxSize,
+      Color _boxColor,
+      Color _innerBoxColor,
+      List<int> _myNumbers,
+      GenerationDataProvider model,
+      dynamic currentTheme,
+      int number) {
     List<Widget> lottoGrids = [];
 
     for (int i = 0; i < number; i++) {
-        lottoGrids.add(_buildOneLottoGrid(boxSize, _boxColor, _innerBoxColor, _myNumbers, model));
+      lottoGrids.add(_buildOneLottoGrid(
+          boxSize, _boxColor, _innerBoxColor, _myNumbers, model, currentTheme));
     }
 
     return lottoGrids;
   }
 
-  LottoGrid _buildOneLottoGrid(double boxSize, Color _boxColor, Color _innerBoxColor, List<int> _myNumbers, GenerationDataProvider model) {
+  Widget _buildOneLottoGrid(double boxSize, Color boxColor,
+      Color innerBoxColor, List<int> myNumbers, GenerationDataProvider model, dynamic currentTheme) {
+    
+    List<int> _extraNumbers = NumberGeneratorsUtils.generateEuroJackpotExtras();
+
+    return Column(
+      children: <Widget>[
+        LottoGrid(
+          boxSize: boxSize,
+          boxColor: boxColor,
+          innerBoxColor: innerBoxColor,
+          containedNumbers: myNumbers,
+          system: model.getGenerationData().selectedSystem,
+          boxNumberStyle: kTinyText,
+          selectedBoxNumberStyle: kTinyBoldText,
+        ),
+        model.getGenerationData().selectedSystem.systemIdentifier == SupportedSystems.euroJackpot 
+          ? _buildEuroJackpotExtraGrid(
+            boxSize,
+            currentTheme == darkMode ? kColorThree : Colors.grey[600],
+            currentTheme == darkMode ? innerBoxColor : Colors.yellow[300],
+            _extraNumbers
+          )
+          : SizedBox(height: 0),
+      ],
+    );
+  }
+
+  LottoGrid _buildEuroJackpotExtraGrid(double boxSize, Color boxColor,
+      Color innerBoxColor, List<int> extraNumbers) {
     return LottoGrid(
-                        boxSize: boxSize,
-                        boxColor: _boxColor,
-                        innerBoxColor: _innerBoxColor,
-                        containedNumbers: _myNumbers, 
-                        system: model.getGenerationData().selectedSystem, 
-                        boxNumberStyle: kTinyText,
-                        selectedBoxNumberStyle: kTinyBoldText,                         
-                      );
+      boxSize: boxSize,
+      boxColor: boxColor,
+      innerBoxColor: innerBoxColor,
+      containedNumbers: extraNumbers,
+      system: supportedLotterySystems[0],
+      boxNumberStyle: kTinyItalicText,
+      selectedBoxNumberStyle: kTinyBoldText,
+      isEuroJackpotExtraGrid: true,
+    );
   }
 
   Wrap _generateNumbersList(List<int> numberList) {
-    return Wrap(      
+    return Wrap(
       spacing: 5.0,
       children: numberList
           .map(
-            (singleNumber) => Chip(              
+            (singleNumber) => Chip(
               label: Text(
                 '$singleNumber',
                 style: kSmallBoldText,
@@ -137,4 +214,3 @@ class GenResultScreen extends StatelessWidget {
     );
   }
 }
-

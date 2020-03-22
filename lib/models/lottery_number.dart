@@ -1,4 +1,4 @@
-enum SupportedNumbers { six, seven, eight, nine, ten , eleven, twelve }
+enum SupportedNumbers { five, six, seven, eight, nine, ten , eleven, twelve }
 
 class LotteryNumber {
   final int numberIdentifier;
@@ -7,10 +7,11 @@ class LotteryNumber {
   const LotteryNumber({this.name, this.numberIdentifier});
 }
 
-const minLotteryNumber = 6.0;
-const maxLotteryNumber = 12.0;
+//const minLotteryNumber = 5.0;
+//const maxLotteryNumber = 12.0;
 
 const supportedLotteryNumbers = [
+  LotteryNumber(name: SupportedNumbers.five, numberIdentifier: 5),
   LotteryNumber(name: SupportedNumbers.six, numberIdentifier: 6),
   LotteryNumber(name: SupportedNumbers.seven, numberIdentifier: 7),
   LotteryNumber(name: SupportedNumbers.eight, numberIdentifier: 8),

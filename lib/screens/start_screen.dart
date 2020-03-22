@@ -26,7 +26,6 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(AppTextUtils.getUIText(context, 'start_screen_title')),
@@ -94,49 +93,9 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 
-  Widget _buildLotteryNumberSlider(BuildContext context) {
-    final generationDataProvider = Provider.of<GenerationDataProvider>(context, listen: false);
-    // setting listen to false explicitly results in no rebuild of the Widget, 
-    // which is not really necesary
-    generationData = generationDataProvider.getGenerationData();
-
-    return Column(
-      children: <Widget>[
-        Slider(
-          value: _numCnt,
-          onChanged: (newNumCnt) {
-            setState(() {
-              _numCnt = newNumCnt;
-
-              generationData.selectedLotteryNumber = supportedLotteryNumbers.firstWhere((element) => element.numberIdentifier == _numCnt);              
-            });
-          },
-          divisions: 6,
-          min: minLotteryNumber,
-          max: maxLotteryNumber,
-          label: '${_numCnt.toInt()}',
-          inactiveColor: kColorSix.withOpacity(0.3),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: supportedLotteryNumbers.map((currentNum) {
-              return Text(
-                currentNum.numberIdentifier.toString(),
-                style: kSmallItalicText,
-              );
-            }).toList(),
-          ),
-        )
-      ],
-    );
-  }
-
+  
   Widget _buildLottoSystemSelection() {
-    final generationDataProvider = Provider.of<GenerationDataProvider>(context, listen: false);
+    final generationDataProvider = Provider.of<GenerationDataProvider>(context);
     generationData = generationDataProvider.getGenerationData();
 
     return Row(
@@ -155,6 +114,9 @@ class _StartScreenState extends State<StartScreen> {
                 setState(() {
                   _lotSystem = value;
                   generationData.selectedSystem = _lotSystem;
+                  if (_lotSystem.minGeneratedNumbers > _numCnt) {
+                    _numCnt = 8;
+                  }
                 });
               },
             )
@@ -164,8 +126,51 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 
+  Widget _buildLotteryNumberSlider(BuildContext context) {
+    final generationDataProvider = Provider.of<GenerationDataProvider>(context);
+    // setting listen to false explicitly results in no rebuild of the Widget, 
+    // which is not really necessary
+    generationData = generationDataProvider.getGenerationData();
+    int minGenNum = generationData.selectedSystem.minGeneratedNumbers;
+    int maxGenNum = generationData.selectedSystem.maxGeneratedNumbers;
+
+    return Column(
+      children: <Widget>[
+        Slider(
+          value: _numCnt,
+          onChanged: (newNumCnt) {
+            setState(() {
+              _numCnt = newNumCnt;
+
+              generationData.selectedLotteryNumber = supportedLotteryNumbers.firstWhere((element) => element.numberIdentifier == _numCnt);              
+            });
+          },
+          divisions: (maxGenNum - minGenNum),
+          min: minGenNum.toDouble(),
+          max: maxGenNum.toDouble(),
+          label: '${_numCnt.toInt()}',
+          inactiveColor: kColorSix.withOpacity(0.3),
+        ),
+        /*Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: supportedLotteryNumbers.map((currentNum) {
+              return Text(
+                currentNum.numberIdentifier.toString(),
+                style: kSmallItalicText,
+              );
+            }).toList(),
+          ),
+        )*/
+      ],
+    );
+  }
+
   Widget _buildLotteryFieldSelection() {
-    final generationDataProvider = Provider.of<GenerationDataProvider>(context, listen: false);
+    final generationDataProvider = Provider.of<GenerationDataProvider>(context);
     generationData = generationDataProvider.getGenerationData();
 
     return Center(

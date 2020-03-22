@@ -29,10 +29,15 @@ class GridUtils {
   ];
 
   static List<List<int>> lottoGridEuroJackpot = [
-    ejOne, ejTwo, ejThree, ejFour, ejFive
+    ejOne,
+    ejTwo,
+    ejThree,
+    ejFour,
+    ejFive
   ];
-}
 
+  static List<int> lottoEuro2Of10Grid = ejOne;
+}
 
 class LottoGrid extends StatelessWidget {
   final List<int> containedNumbers;
@@ -42,6 +47,7 @@ class LottoGrid extends StatelessWidget {
   final TextStyle boxNumberStyle;
   final TextStyle selectedBoxNumberStyle;
   final LotterySystem system;
+  final bool isEuroJackpotExtraGrid;
 
   const LottoGrid({
     @required this.containedNumbers,
@@ -50,35 +56,78 @@ class LottoGrid extends StatelessWidget {
     this.boxSize = 22.0,
     this.boxNumberStyle,
     this.selectedBoxNumberStyle,
-    @required this.system
+    @required this.system,
+    this.isEuroJackpotExtraGrid = false,
   });
-
 
   @override
   Widget build(BuildContext context) {
-    List<List<int>> currentSystemGrid = system.systemIdentifier == SupportedSystems.sixOf49 
-      ? GridUtils.lottoGridOf49
-      : GridUtils.lottoGridEuroJackpot;
+    List<List<int>> currentSystemGrid;
+
+    switch (system.systemIdentifier) {
+      case SupportedSystems.sixOf49:
+        currentSystemGrid = GridUtils.lottoGridOf49;
+        break;
+      case SupportedSystems.euroJackpot:
+        currentSystemGrid = GridUtils.lottoGridEuroJackpot;
+        break;
+    }
+
+    if (isEuroJackpotExtraGrid) {
+      return Container(
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 2.0,
+            ),
+            Text('2 of 10', style: kTinyText),
+            SizedBox(
+              height: 4.0,
+            ),
+            Wrap(
+              children: GridUtils.lottoEuro2Of10Grid
+                  .map(
+                    (box) => SingleBox(
+                      boxColor: boxColor,
+                      boxSize: boxSize,
+                      boxText: box,
+                      containedNumbers: containedNumbers,
+                      numberStyle: boxNumberStyle,
+                      selectedNumberStyle: selectedBoxNumberStyle,
+                      innerBoxColor: innerBoxColor,
+                    ),
+                  )
+                  .toList(),
+            ),
+            SizedBox(
+              height: 12.0,
+            ),
+          ],
+        ),
+      );
+    }
 
     return Container(
-      child: Column(        
-        children: currentSystemGrid.map((List<int> gridRow) {
-          return Wrap(
-            children: gridRow
-                .map(
-                  (box) => SingleBox(
-                    boxColor: boxColor,
-                    boxSize: boxSize,
-                    boxText: box,
-                    containedNumbers: containedNumbers,
-                    numberStyle: boxNumberStyle,
-                    selectedNumberStyle: selectedBoxNumberStyle,
-                    innerBoxColor: innerBoxColor,                  
-                  ),
-                )
-                .toList(),
-          );
-        }).toList(),
+      child: Column(
+        children: currentSystemGrid.map(
+          (List<int> gridRow) {
+            return Wrap(
+              children: gridRow
+                  .map(
+                    (box) => SingleBox(
+                      boxColor: boxColor,
+                      boxSize: boxSize,
+                      boxText: box,
+                      containedNumbers: containedNumbers,
+                      numberStyle: boxNumberStyle,
+                      selectedNumberStyle: selectedBoxNumberStyle,
+                      innerBoxColor: innerBoxColor,
+                    ),
+                  )
+                  .toList(),
+            );
+          },
+        ).toList(),
       ),
     );
   }
@@ -93,15 +142,14 @@ class SingleBox extends StatelessWidget {
   final TextStyle numberStyle;
   final List<int> containedNumbers;
 
-  const SingleBox({
-    this.boxText,
-    this.boxColor = kColorThree,
-    this.innerBoxColor = kColorSeven,
-    this.boxSize,
-    this.numberStyle = kSmallText,
-    this.selectedNumberStyle = kSmallBoldText,
-    @required this.containedNumbers
-  });
+  const SingleBox(
+      {this.boxText,
+      this.boxColor = kColorThree,
+      this.innerBoxColor = kColorSeven,
+      this.boxSize,
+      this.numberStyle = kSmallText,
+      this.selectedNumberStyle = kSmallBoldText,
+      @required this.containedNumbers});
 
   @override
   Widget build(BuildContext context) {
@@ -112,11 +160,14 @@ class SingleBox extends StatelessWidget {
         width: boxSize,
         height: boxSize,
         child: Container(
-          color: containedNumbers.contains(boxText) ? kColorThree : innerBoxColor,
+          color:
+              containedNumbers.contains(boxText) ? kColorThree : innerBoxColor,
           child: Center(
-            child: Text(              
+            child: Text(
               boxText.toString(),
-              style: containedNumbers.contains(boxText) ? selectedNumberStyle : numberStyle,
+              style: containedNumbers.contains(boxText)
+                  ? selectedNumberStyle
+                  : numberStyle,
             ),
           ),
         ),
