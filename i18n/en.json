@@ -12,5 +12,13 @@
 
   "start_screen_1_text": "1. What lottery do you want to play?",
   "start_screen_2_text": "2. How many lucky numbers do you want to generate?",
-  "start_screen_3_text": "3. On how many playing fields should the numbers be distributed?"
+  "start_screen_3_text": "3. On how many playing fields should the numbers be distributed?",
+  "start_screen_btn_generate": "Generate",
+
+  "genresults_screen_title": "Result",
+  "genresults_screen_wantplay": "You selected system",
+  "genresults_screen_youwant": "You want to play",
+  "genresults_screen_numbers": "numbers",
+  "genresults_screen_hereareluckynumbers": "Here are your lucky numbers!",
+  "genresults_screen_andgeneratedfields": "And your generated fields ..."
 }

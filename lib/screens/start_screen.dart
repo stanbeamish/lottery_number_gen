@@ -203,17 +203,13 @@ class _StartScreenState extends State<StartScreen> {
         Container(
           child: Expanded(
             child: RaisedButton(
-              onPressed: () {
-                print('You want to generate '
-                    '${_numCnt.toInt()} numbers for '
-                    '${_lotSystem.name} and'
-                    ' ${_lotField.numberIdentifier} fields.');
+              onPressed: () {                
                 Navigator.pushNamed(context, GenResultScreen.id);
               },
               child: Container(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
-                  'Generate',
+                  AppTextUtils.getUIText(context, 'start_screen_btn_generate'),
                   style: kButtonText,
                 ),
               ),

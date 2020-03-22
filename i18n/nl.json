@@ -12,5 +12,13 @@
 
   "start_screen_1_text": "1. Welke loterij wil je spelen?",
   "start_screen_2_text": "2. Hoeveel geluksnummers wil je genereren?",
-  "start_screen_3_text": "3. Op hoeveel speelvelden moeten de nummers worden verdeeld?"
+  "start_screen_3_text": "3. Op hoeveel speelvelden moeten de nummers worden verdeeld?",
+  "start_screen_btn_generate": "Genereer",
+
+  "genresults_screen_title": "Resultaat",
+  "genresults_screen_wantplay": "Jouw gekozen systeem",
+  "genresults_screen_youwant": "Je wilt",
+  "genresults_screen_numbers": "nummers spelen",
+  "genresults_screen_hereareluckynumbers": "Hier zijn je geluksnummers!",
+  "genresults_screen_andgeneratedfields": "En je gegenereerde velden..."
 }

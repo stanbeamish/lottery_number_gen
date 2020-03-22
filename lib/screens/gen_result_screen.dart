@@ -5,6 +5,7 @@ import 'package:lotterynumbergen/providers/theme_provider.dart';
 import 'package:lotterynumbergen/utils/app_colors.dart';
 import 'package:lotterynumbergen/utils/app_number_generators.dart';
 import 'package:lotterynumbergen/utils/app_styles.dart';
+import 'package:lotterynumbergen/utils/app_text_utils.dart';
 import 'package:lotterynumbergen/utils/app_themes.dart';
 import 'package:lotterynumbergen/widgets/lotto_grid.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,7 @@ class GenResultScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Result'),
+            title: Text(AppTextUtils.getUIText(context, 'genresults_screen_title')),
           ),
           body: SingleChildScrollView(
             child: Container(
@@ -46,7 +47,7 @@ class GenResultScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[                                                
-                  Text('You want to play'),
+                  Text(AppTextUtils.getUIText(context, 'genresults_screen_wantplay')),
                   Card(                      
                     elevation: 5.0,
                     margin: const EdgeInsets.all(8.0),
@@ -58,11 +59,11 @@ class GenResultScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text('You want'),
+                  Text(AppTextUtils.getUIText(context, 'genresults_screen_youwant')),
                   Card(child: ListTile(
                     leading: Icon(MaterialCommunityIcons.numeric_9_plus_box_multiple_outline),
                     title: Text(model.getGenerationData().selectedLotteryNumber.numberIdentifier.toString(), style: kHeader1,))),
-                  Text('numbers',),                  
+                  Text(AppTextUtils.getUIText(context, 'genresults_screen_numbers'),),                  
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0, bottom: 15.0),
                     child: Container(                    
@@ -71,12 +72,12 @@ class GenResultScreen extends StatelessWidget {
                       color: themeProvider.getTheme() == darkMode ? kColorOne : kColorThree,
                     ),
                   ),
-                  Text('Here are your lucky numbers!', style: kHeader1,),
+                  Text(AppTextUtils.getUIText(context, 'genresults_screen_hereareluckynumbers'), style: kHeader1,),
                   _generateNumbersList(
                     _myNumbers,
                   ),
                   Text(
-                    'And your generated fields ...', 
+                    AppTextUtils.getUIText(context, 'genresults_screen_andgeneratedfields'), 
                     style: kSmallBoldText,
                   ),
                   SizedBox(height: 15.0,),

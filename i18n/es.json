@@ -12,5 +12,13 @@
 
   "start_screen_1_text": "1. ¿A qué lotería quieres jugar?",
   "start_screen_2_text": "2. ¿Cuántos números de la suerte quieres generar?",
-  "start_screen_3_text": "3. ¿En cuántos campos de juego deberían distribuirse los números?"
+  "start_screen_3_text": "3. ¿En cuántos campos de juego deberían distribuirse los números?",
+  "start_screen_btn_generate": "Generar",
+
+  "genresults_screen_title": "Resultado",
+  "genresults_screen_wantplay": "Tu sistema seleccionado",
+  "genresults_screen_youwant": "Quieres jugar",
+  "genresults_screen_numbers": "números",
+  "genresults_screen_hereareluckynumbers": "¡Aquí están tus números de la suerte!",
+  "genresults_screen_andgeneratedfields": "Y tus campos generados..."
 }
