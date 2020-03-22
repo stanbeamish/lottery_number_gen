@@ -1,10 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:lotterynumbergen/models/lottery_system.dart';
 import 'package:lotterynumbergen/providers/generation_data_provider.dart';
 import 'package:lotterynumbergen/providers/theme_provider.dart';
 import 'package:lotterynumbergen/utils/app_colors.dart';
+import 'package:lotterynumbergen/utils/app_number_generators.dart';
 import 'package:lotterynumbergen/utils/app_styles.dart';
 import 'package:lotterynumbergen/utils/app_themes.dart';
 import 'package:lotterynumbergen/widgets/lotto_grid.dart';
@@ -20,7 +19,7 @@ class GenResultScreen extends StatelessWidget {
 
     return Consumer<GenerationDataProvider>(
       builder: (context, model, child) {
-        List<int> _myNumbers = _generateNumbers(
+        List<int> _myNumbers = NumberGeneratorsUtils.generateNumbers(
           model.getGenerationData().selectedLotteryNumber.numberIdentifier, 
           model.getGenerationData().selectedSystem,
         );
@@ -119,25 +118,6 @@ class GenResultScreen extends StatelessWidget {
                         boxNumberStyle: kTinyText,
                         selectedBoxNumberStyle: kTinyBoldText,                         
                       );
-  }
-
-  List<int> _generateNumbers(int howMany, LotterySystem system) {
-    List<int> results = List<int>();
-    var r = Random();
-    int max = system.maxNumber;
-
-    for (int i = 0; i < howMany; i++) {
-      int a = r.nextInt(max - 1) + 1;
-      if (results.contains(a)) {
-        i--;
-      } else {
-        results.add(a);
-      }
-    }
-
-    results.sort();
-
-    return results;
   }
 
   Wrap _generateNumbersList(List<int> numberList) {
