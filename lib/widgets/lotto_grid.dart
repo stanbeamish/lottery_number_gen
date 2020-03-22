@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:lotterynumbergen/data/lottery_system.dart';
 import 'package:lotterynumbergen/utils/app_colors.dart';
 import 'package:lotterynumbergen/utils/app_styles.dart';
 
 class GridUtils {
-  static List<int> rowOne = [1, 2, 3, 4, 5, 6, 7];
-  static List<int> rowTwo = [8, 9, 10, 11, 12, 13, 14];
-  static List<int> rowThree = [15, 16, 17, 18, 19, 20, 21];
-  static List<int> rowFour = [22, 23, 24, 25, 26, 27, 28];
-  static List<int> rowFive = [29, 30, 31, 32, 33, 34, 35];
-  static List<int> rowSix = [36, 37, 38, 39, 40, 41, 42];
-  static List<int> rowSeven = [43, 44, 45, 46, 47, 48, 49];
+  static List<int> of49One = [1, 2, 3, 4, 5, 6, 7];
+  static List<int> of49Two = [8, 9, 10, 11, 12, 13, 14];
+  static List<int> of49Three = [15, 16, 17, 18, 19, 20, 21];
+  static List<int> of49Four = [22, 23, 24, 25, 26, 27, 28];
+  static List<int> of49Five = [29, 30, 31, 32, 33, 34, 35];
+  static List<int> of49Six = [36, 37, 38, 39, 40, 41, 42];
+  static List<int> of49Seven = [43, 44, 45, 46, 47, 48, 49];
 
-  static List<List<int>> lottoGrid = [
-    rowOne,
-    rowTwo,
-    rowThree,
-    rowFour,
-    rowFive,
-    rowSix,
-    rowSeven
+  static List<int> ejOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  static List<int> ejTwo = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+  static List<int> ejThree = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+  static List<int> ejFour = [31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+  static List<int> ejFive = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50];
+
+  static List<List<int>> lottoGridOf49 = [
+    of49One,
+    of49Two,
+    of49Three,
+    of49Four,
+    of49Five,
+    of49Six,
+    of49Seven
+  ];
+
+  static List<List<int>> lottoGridEuroJackpot = [
+    ejOne, ejTwo, ejThree, ejFour, ejFive
   ];
 }
 
@@ -28,21 +39,31 @@ class LottoGrid extends StatelessWidget {
   final double boxSize;
   final Color boxColor;
   final Color innerBoxColor;
+  final TextStyle boxNumberStyle;
+  final TextStyle selectedBoxNumberStyle;
+  final LotterySystem system;
 
   const LottoGrid({
     @required this.containedNumbers,
     this.boxColor = kColorSix,
     this.innerBoxColor = kColorSeven,
     this.boxSize = 22.0,
+    this.boxNumberStyle,
+    this.selectedBoxNumberStyle,
+    @required this.system
   });
 
 
   @override
   Widget build(BuildContext context) {
+    List<List<int>> currentSystemGrid = system.systemIdentifier == SupportedSystems.sixOf49 
+      ? GridUtils.lottoGridOf49
+      : GridUtils.lottoGridEuroJackpot;
+
     return Container(
-      child: Column(
-        children: GridUtils.lottoGrid.map((List<int> gridRow) {
-          return Row(
+      child: Column(        
+        children: currentSystemGrid.map((List<int> gridRow) {
+          return Wrap(
             children: gridRow
                 .map(
                   (box) => SingleBox(
@@ -50,6 +71,9 @@ class LottoGrid extends StatelessWidget {
                     boxSize: boxSize,
                     boxText: box,
                     containedNumbers: containedNumbers,
+                    numberStyle: boxNumberStyle,
+                    selectedNumberStyle: selectedBoxNumberStyle,
+                    innerBoxColor: innerBoxColor,                  
                   ),
                 )
                 .toList(),
@@ -65,6 +89,8 @@ class SingleBox extends StatelessWidget {
   final Color boxColor;
   final double boxSize;
   final Color innerBoxColor;
+  final TextStyle selectedNumberStyle;
+  final TextStyle numberStyle;
   final List<int> containedNumbers;
 
   const SingleBox({
@@ -72,6 +98,8 @@ class SingleBox extends StatelessWidget {
     this.boxColor = kColorThree,
     this.innerBoxColor = kColorSeven,
     this.boxSize,
+    this.numberStyle = kSmallText,
+    this.selectedNumberStyle = kSmallBoldText,
     @required this.containedNumbers
   });
 
@@ -88,7 +116,7 @@ class SingleBox extends StatelessWidget {
           child: Center(
             child: Text(              
               boxText.toString(),
-              style: containedNumbers.contains(boxText) ? kSmallBoldText : kSmallText,
+              style: containedNumbers.contains(boxText) ? selectedNumberStyle : numberStyle,
             ),
           ),
         ),

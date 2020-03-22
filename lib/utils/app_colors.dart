@@ -7,6 +7,7 @@ const kColorFour = Color(0xFF403C3C);
 const kColorFive = Color(0xFFF0FCFE);
 const kColorSix = Color(0xFFADAD49);
 const kColorSeven = Color(0xFFFFFFCC);
+const kColorBrown = Color(0xFF463606);
 const int _kColorFour = 0xFF403C3C;
 
 Map<int, Color> appSwatchColorMap =
@@ -39,4 +40,4 @@ Map<int, Color> appDarkSwatchColorMap =
   900:Color.fromRGBO(64,60,60, 1),
 };
 
-MaterialColor appDarkSwatchColor = MaterialColor(0xFF463606, appDarkSwatchColorMap);
+MaterialColor appDarkSwatchColor = MaterialColor(0xFF403C3C, appDarkSwatchColorMap);
