@@ -93,7 +93,6 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 
-  
   Widget _buildLottoSystemSelection() {
     final generationDataProvider = Provider.of<GenerationDataProvider>(context);
     generationData = generationDataProvider.getGenerationData();
@@ -117,6 +116,10 @@ class _StartScreenState extends State<StartScreen> {
                   if (_lotSystem.minGeneratedNumbers > _numCnt) {
                     _numCnt = 8;
                   }
+                  generationData.selectedLotteryNumber =
+                      supportedLotteryNumbers.firstWhere((element) =>
+                          element.numberIdentifier ==
+                          _lotSystem.minGeneratedNumbers);
                 });
               },
             )
@@ -128,7 +131,7 @@ class _StartScreenState extends State<StartScreen> {
 
   Widget _buildLotteryNumberSlider(BuildContext context) {
     final generationDataProvider = Provider.of<GenerationDataProvider>(context);
-    // setting listen to false explicitly results in no rebuild of the Widget, 
+    // setting listen to false explicitly results in no rebuild of the Widget,
     // which is not really necessary
     generationData = generationDataProvider.getGenerationData();
     int minGenNum = generationData.selectedSystem.minGeneratedNumbers;
@@ -142,7 +145,8 @@ class _StartScreenState extends State<StartScreen> {
             setState(() {
               _numCnt = newNumCnt;
 
-              generationData.selectedLotteryNumber = supportedLotteryNumbers.firstWhere((element) => element.numberIdentifier == _numCnt);              
+              generationData.selectedLotteryNumber = supportedLotteryNumbers
+                  .firstWhere((element) => element.numberIdentifier == _numCnt);
             });
           },
           divisions: (maxGenNum - minGenNum),
@@ -151,20 +155,6 @@ class _StartScreenState extends State<StartScreen> {
           label: '${_numCnt.toInt()}',
           inactiveColor: kColorSix.withOpacity(0.3),
         ),
-        /*Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: supportedLotteryNumbers.map((currentNum) {
-              return Text(
-                currentNum.numberIdentifier.toString(),
-                style: kSmallItalicText,
-              );
-            }).toList(),
-          ),
-        )*/
       ],
     );
   }
@@ -208,7 +198,7 @@ class _StartScreenState extends State<StartScreen> {
         Container(
           child: Expanded(
             child: RaisedButton(
-              onPressed: () {                
+              onPressed: () {
                 Navigator.pushNamed(context, GenResultScreen.id);
               },
               child: Container(

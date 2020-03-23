@@ -31,13 +31,19 @@ class GenResultScreen extends StatelessWidget {
                     SupportedSystems.sixOf49
                 ? MediaQuery.of(context).size.width / 18
                 : MediaQuery.of(context).size.width / 24;
+        
+        int numberOfFields = model.getGenerationData().selectedLotteryField.numberIdentifier;
 
-        Color _boxColor = currentTheme == darkMode
-            ? Colors.black87
-            : Colors.black38;
+        if (numberOfFields < 2) {
+          boxSize = boxSize * 1.5;
+        } else if (numberOfFields == 2) {
+          boxSize = boxSize * 1.1;
+        }
 
-        Color _innerBoxColor =
-            currentTheme == darkMode ? kColorTwo : kColorSeven;       
+        bool isDarkMode = currentTheme == darkMode;
+
+        Color _boxColor = isDarkMode ? Colors.black87 : Colors.black38;
+        Color _innerBoxColor = isDarkMode ? kColorTwo : kColorSeven;
 
         return Scaffold(
           appBar: AppBar(
@@ -50,6 +56,7 @@ class GenResultScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Text(AppTextUtils.getUIText(
                       context, 'genresults_screen_wantplay')),
@@ -102,6 +109,7 @@ class GenResultScreen extends StatelessWidget {
                   ),
                   _generateNumbersList(
                     _myNumbers,
+                    isDarkMode,
                   ),
                   Text(
                     AppTextUtils.getUIText(
@@ -156,9 +164,8 @@ class GenResultScreen extends StatelessWidget {
     return lottoGrids;
   }
 
-  Widget _buildOneLottoGrid(double boxSize, Color boxColor,
-      Color innerBoxColor, List<int> myNumbers, GenerationDataProvider model, dynamic currentTheme) {
-    
+  Widget _buildOneLottoGrid(double boxSize, Color boxColor, Color innerBoxColor,
+      List<int> myNumbers, GenerationDataProvider model, dynamic currentTheme) {
     List<int> _extraNumbers = NumberGeneratorsUtils.generateEuroJackpotExtras();
 
     return Column(
@@ -172,14 +179,14 @@ class GenResultScreen extends StatelessWidget {
           boxNumberStyle: kTinyText,
           selectedBoxNumberStyle: kTinyBoldText,
         ),
-        model.getGenerationData().selectedSystem.systemIdentifier == SupportedSystems.euroJackpot 
-          ? _buildEuroJackpotExtraGrid(
-            boxSize,
-            currentTheme == darkMode ? kColorThree : Colors.grey[600],
-            currentTheme == darkMode ? innerBoxColor : Colors.yellow[300],
-            _extraNumbers
-          )
-          : SizedBox(height: 0),
+        model.getGenerationData().selectedSystem.systemIdentifier ==
+                SupportedSystems.euroJackpot
+            ? _buildEuroJackpotExtraGrid(
+                boxSize,
+                currentTheme == darkMode ? kColorThreeDark : Colors.grey[600],
+                currentTheme == darkMode ? innerBoxColor : Colors.yellow[300],
+                _extraNumbers)
+            : SizedBox(height: 0),
       ],
     );
   }
@@ -198,14 +205,20 @@ class GenResultScreen extends StatelessWidget {
     );
   }
 
-  Wrap _generateNumbersList(List<int> numberList) {
+  Wrap _generateNumbersList(List<int> numberList, bool isDarkMode) {
     return Wrap(
-      spacing: 5.0,
+      spacing: 3.0,
+      runSpacing: 5.0,
       children: numberList
           .map(
             (singleNumber) => Chip(
+              elevation: 4.0,
+              padding: EdgeInsets.all(10.0),
+              shape: CircleBorder(),
+              backgroundColor: isDarkMode ? kColorThreeDark : kColorOne,
               label: Text(
                 '$singleNumber',
+                overflow: TextOverflow.ellipsis,
                 style: kSmallBoldText,
               ),
             ),

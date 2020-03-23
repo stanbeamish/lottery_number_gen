@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const kColorOne = Color(0xFFF3E408);
 const kColorTwo = Color(0xFF707070);
 const kColorThree = Color(0xFF9C9C02);
+const kColorThreeDark = Color(0xFF7B7C02);
 const kColorFour = Color(0xFF403C3C);
 const kColorFive = Color(0xFFF0FCFE);
 const kColorSix = Color(0xFFADAD49);

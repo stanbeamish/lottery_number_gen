@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<GenerationDataProvider>(create: (_) => GenerationDataProvider(
           GenerationData(
             selectedSystem: supportedLotterySystems[0], // initialize with defaults
-            selectedLotteryField: supportedLotteryFields[4],
+            selectedLotteryField: supportedLotteryFields[0],
             selectedLotteryNumber: supportedLotteryNumbers[0],
           ),
         ),),
