@@ -44,49 +44,51 @@ class _StartScreenState extends State<StartScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                AppTextUtils.getUIText(context, 'start_screen_1_text'),
-                style: kHeader1,
-              ),
-              SizedBox(
-                height: 6.0,
-              ),
-              _buildLottoSystemSelection(),
-              SizedBox(
-                height: 12.0,
-              ),
-              Text(
-                AppTextUtils.getUIText(context, 'start_screen_2_text'),
-                style: kHeader1,
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              //_buildLotteryNumbersSelection(),
-              _buildLotteryNumberSlider(context),
-              SizedBox(
-                height: 12.0,
-              ),
-              Text(
-                AppTextUtils.getUIText(context, 'start_screen_3_text'),
-                style: kHeader1,
-              ),
-              SizedBox(
-                height: 6.0,
-              ),
-              _buildLotteryFieldSelection(),
-              SizedBox(
-                height: 20.0,
-              ),
-              _buildGenerateButton()
-            ],
+      body: SingleChildScrollView(
+              child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  AppTextUtils.getUIText(context, 'start_screen_1_text'),
+                  style: kHeader1,
+                ),
+                SizedBox(
+                  height: 6.0,
+                ),
+                _buildLottoSystemSelection(),
+                SizedBox(
+                  height: 12.0,
+                ),
+                Text(
+                  AppTextUtils.getUIText(context, 'start_screen_2_text'),
+                  style: kHeader1,
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                //_buildLotteryNumbersSelection(),
+                _buildLotteryNumberSlider(context),
+                SizedBox(
+                  height: 12.0,
+                ),
+                Text(
+                  AppTextUtils.getUIText(context, 'start_screen_3_text'),
+                  style: kHeader1,
+                ),
+                SizedBox(
+                  height: 6.0,
+                ),
+                _buildLotteryFieldSelection(),
+                SizedBox(
+                  height: 20.0,
+                ),
+                _buildGenerateButton()
+              ],
+            ),
           ),
         ),
       ),
