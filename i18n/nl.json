@@ -10,9 +10,12 @@
   "language_dutch" : "Nederlands",
   "language_italian": "Italiaans",
 
-  "start_screen_1_text": "1. Welke loterij wil je spelen?",
-  "start_screen_2_text": "2. Hoeveel geluksnummers wil je genereren?",
-  "start_screen_3_text": "3. Op hoeveel speelvelden moeten de nummers worden verdeeld?",
+  "start_screen_1_text": "Welke loterij wil je spelen?",
+  "start_screen_1_title": "Lotto System",
+  "start_screen_2_text": "Hoeveel geluksnummers wil je genereren?",
+  "start_screen_2_title": "Geluksnummers",
+  "start_screen_3_text": "Hoeveel velden wil je spelen?",
+  "start_screen_3_title": "Speelvelden",
   "start_screen_btn_generate": "Genereer",
 
   "genresults_screen_title": "Resultaat",

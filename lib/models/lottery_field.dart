@@ -1,5 +1,5 @@
 
-enum SupportedFields { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen }
+enum SupportedFields { one, two, three, four, five, six, seven, eight, nine, ten }
 
 class LotteryField {
   final int numberIdentifier;
@@ -19,8 +19,8 @@ const supportedLotteryFields = [
   LotteryField(name: SupportedFields.eight, numberIdentifier: 8),
   LotteryField(name: SupportedFields.nine, numberIdentifier: 9),
   LotteryField(name: SupportedFields.ten, numberIdentifier: 10),
-  LotteryField(name: SupportedFields.eleven, numberIdentifier: 11),
+  /*LotteryField(name: SupportedFields.eleven, numberIdentifier: 11),
   LotteryField(name: SupportedFields.twelve, numberIdentifier: 12),
   LotteryField(name: SupportedFields.thirteen, numberIdentifier: 13),
-  LotteryField(name: SupportedFields.fourteen, numberIdentifier: 14),
+  LotteryField(name: SupportedFields.fourteen, numberIdentifier: 14),*/
 ];

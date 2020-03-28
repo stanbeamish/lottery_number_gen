@@ -24,14 +24,14 @@ const supportedLotterySystems = [
     maxNumber: 50,
     systemIdentifier: SupportedSystems.euroJackpot,
     minGeneratedNumbers: 5,
-    maxGeneratedNumbers: 12
+    maxGeneratedNumbers: 10
   ),
   LotterySystem(
     name: '6 aus 49',
     maxNumber: 49,
     systemIdentifier: SupportedSystems.sixOf49,
     minGeneratedNumbers: 6,
-    maxGeneratedNumbers: 12
+    maxGeneratedNumbers: 10
   ),
 ];
 

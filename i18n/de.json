@@ -1,24 +1,27 @@
 {
-  "start_screen_title": "Lotterie Nummern-Generator",
-  "settings_screen_title": "Einstellungen",
-  "settings_screen_theme": "Theme auswählen",
-  "settings_screen_language": "Sprache auswählen",
+    "start_screen_title": "Lotterie Nummern-Generator",
+    "settings_screen_title": "Einstellungen",
+    "settings_screen_theme": "Theme auswählen",
+    "settings_screen_language": "Sprache auswählen",
 
-  "language_german": "Deutsch",
-  "language_english": "Englisch",
-  "language_spanish": "Spanisch",
-  "language_dutch" : "Niederländisch",
-  "language_italian": "Italienisch",
-
-  "start_screen_1_text": "1. Welches Lotto willst du spielen?",
-  "start_screen_2_text": "2. Wieviel Glückszahlen willst du generieren?",
-  "start_screen_3_text": "3. Auf wieviel Spielfelder sollen die Zahlen verteilt werden?",
-  "start_screen_btn_generate": "Generieren",
-
-  "genresults_screen_title": "Ergebnis",
-  "genresults_screen_wantplay": "Dein gewähltes System",
-  "genresults_screen_youwant": "Du möchtest",
-  "genresults_screen_numbers": "Zahlen spielen",
-  "genresults_screen_hereareluckynumbers": "Hier sind deine Glückszahlen!",
-  "genresults_screen_andgeneratedfields": "Und deine generierten Spielfelder ..."
+    "language_german": "Deutsch",
+    "language_english": "Englisch",
+    "language_spanish": "Spanisch",
+    "language_dutch": "Niederländisch",
+    "language_italian": "Italienisch",
+    
+    "start_screen_1_text": "Welches Lotto willst du spielen?",
+    "start_screen_1_title": "Lotto System",
+    "start_screen_2_text": "Wieviel Glückszahlen willst du generieren?",
+    "start_screen_2_title": "Glückszahlen",
+    "start_screen_3_text": "Wieviel Spielfelder willst du spielen?",
+    "start_screen_3_title": "Spielfelder",
+    "start_screen_btn_generate": "Generieren",
+    
+    "genresults_screen_title": "Ergebnis",
+    "genresults_screen_wantplay": "Dein gewähltes System",
+    "genresults_screen_youwant": "Du möchtest",
+    "genresults_screen_numbers": "Zahlen spielen",
+    "genresults_screen_hereareluckynumbers": "Hier sind deine Glückszahlen!",
+    "genresults_screen_andgeneratedfields": "Und deine generierten Spielfelder ..."
 }

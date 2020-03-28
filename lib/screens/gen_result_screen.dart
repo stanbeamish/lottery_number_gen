@@ -165,7 +165,7 @@ class GenResultScreen extends StatelessWidget {
   }
 
   Widget _buildOneLottoGrid(double boxSize, Color boxColor, Color innerBoxColor,
-      List<int> myNumbers, GenerationDataProvider model, dynamic currentTheme) {
+      List<int> myNumbers, GenerationDataProvider model, dynamic currentTheme) {        
     List<int> _extraNumbers = NumberGeneratorsUtils.generateEuroJackpotExtras();
 
     return Column(

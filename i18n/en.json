@@ -10,9 +10,12 @@
   "language_dutch" : "Dutch",
   "language_italian": "Italian",
 
-  "start_screen_1_text": "1. What lottery do you want to play?",
-  "start_screen_2_text": "2. How many lucky numbers do you want to generate?",
-  "start_screen_3_text": "3. On how many playing fields should the numbers be distributed?",
+  "start_screen_1_text": "What lottery do you want to play?",
+  "start_screen_1_title": "Lotto System",
+  "start_screen_2_text": "How many lucky numbers do you want to generate?",
+  "start_screen_2_title": "Lucky Numbers",  
+  "start_screen_3_text": "How many squares do you want to play?",
+  "start_screen_3_title": "Squares",
   "start_screen_btn_generate": "Generate",
 
   "genresults_screen_title": "Result",

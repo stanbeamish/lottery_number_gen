@@ -7,6 +7,7 @@ import 'package:lotterynumbergen/models/lottery_system.dart';
 import 'package:lotterynumbergen/providers/generation_data_provider.dart';
 import 'package:lotterynumbergen/providers/language_provider.dart';
 import 'package:lotterynumbergen/providers/theme_provider.dart';
+import 'package:lotterynumbergen/screens/data_input_screen.dart';
 import 'package:lotterynumbergen/screens/gen_result_screen.dart';
 import 'package:lotterynumbergen/screens/settings_screen.dart';
 import 'package:lotterynumbergen/screens/start_screen.dart';
@@ -79,10 +80,11 @@ class MyApp extends StatelessWidget {
             theme: themeProvider.getTheme(),
             routes: {
               StartScreen.id: (context) => StartScreen(),
+              DataInputScreen.id: (context) => DataInputScreen(),
               SettingsScreen.id: (context) => SettingsScreen(),
               GenResultScreen.id: (context) => GenResultScreen(),
             },
-            initialRoute: StartScreen.id,
+            initialRoute: DataInputScreen.id,
           );
         },
       ),

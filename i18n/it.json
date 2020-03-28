@@ -10,9 +10,12 @@
   "language_dutch" : "Olandese",
   "language_italian": "Italiano",
 
-  "start_screen_1_text": "1. A quale lotteria vuoi giocare?",
-  "start_screen_2_text": "2. Quanti numeri fortunati vuoi generare?",
-  "start_screen_3_text": "3. Su quanti campi da gioco devono essere distribuiti i numeri?",
+  "start_screen_1_text": "A quale lotteria vuoi giocare?",
+  "start_screen_1_title": "Lotto System",
+  "start_screen_2_text": "Quanti numeri fortunati vuoi generare?",
+  "start_screen_2_title": "Numeri Fortunati",
+  "start_screen_3_text": "Quanti campi vuoi giocare?",
+  "start_screen_3_title": "Campi",
   "start_screen_btn_generate": "Genera",
   
   "genresults_screen_title": "Risultato",

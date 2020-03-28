@@ -19,7 +19,7 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
-  double _numCnt = 8.0;
+  double _numCnt = 7.0;
   LotterySystem _lotSystem = supportedLotterySystems[0];
   LotteryField _lotField = supportedLotteryFields[0];
   GenerationData generationData;
