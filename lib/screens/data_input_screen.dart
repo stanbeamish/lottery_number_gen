@@ -28,6 +28,13 @@ class _DataInputScreenState extends State<DataInputScreen> {
   GenerationData generationData;
 
   next(List<Step> steps) {
+    if (_currentStep == 1) {
+      // must set this value to the provider
+      setState(() {
+        generationData.selectedLotteryNumber = supportedLotteryNumbers
+                  .firstWhere((element) => element.numberIdentifier == _numCnt);
+      });
+    }
     _currentStep + 1 != steps.length
         ? goTo(_currentStep + 1)
         : setState(() => _complete = true);
@@ -168,8 +175,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
   Widget _buildLotteryNumberSlider(BuildContext context) {
     final generationDataProvider = Provider.of<GenerationDataProvider>(context);
-    // setting listen to false explicitly results in no rebuild of the Widget,
-    // which is not really necessary
+    
     generationData = generationDataProvider.getGenerationData();
     int minGenNum = generationData.selectedSystem.minGeneratedNumbers;
     int maxGenNum = generationData.selectedSystem.maxGeneratedNumbers;
@@ -249,7 +255,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
           _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(3, 8).toList();
         }
         if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(3, 7).toList();
+          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(2, 6).toList();
         }
       }
       break;
@@ -259,7 +265,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
           _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(5, 8).toList();
         }
         if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(6, supportedLotteryFields.length - 1).toList();
+          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(4, 8).toList();
         }
       }
       break;      
@@ -269,7 +275,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
           _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(6, 8).toList();
         }
         if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(7, supportedLotteryFields.length - 1).toList();
+          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(5, 8).toList();
         }
       }
       break;

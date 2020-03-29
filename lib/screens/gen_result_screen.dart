@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lotterynumbergen/models/lottery_distribution.dart';
 import 'package:lotterynumbergen/models/lottery_system.dart';
 import 'package:lotterynumbergen/providers/generation_data_provider.dart';
 import 'package:lotterynumbergen/providers/theme_provider.dart';
@@ -7,6 +8,7 @@ import 'package:lotterynumbergen/utils/app_number_generators.dart';
 import 'package:lotterynumbergen/utils/app_styles.dart';
 import 'package:lotterynumbergen/utils/app_text_utils.dart';
 import 'package:lotterynumbergen/utils/app_themes.dart';
+import 'package:lotterynumbergen/widgets/line_separator.dart';
 import 'package:lotterynumbergen/widgets/lotto_grid.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -92,29 +94,20 @@ class GenResultScreen extends StatelessWidget {
                     AppTextUtils.getUIText(
                         context, 'genresults_screen_numbers'),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12.0, bottom: 15.0),
-                    child: Container(
-                      height: 1,
-                      width: double.infinity,
-                      color: themeProvider.getTheme() == darkMode
-                          ? kColorOne
-                          : kColorThree,
-                    ),
-                  ),
+                  LineSeparator(themeProvider: themeProvider),
                   Text(
-                    AppTextUtils.getUIText(
-                        context, 'genresults_screen_hereareluckynumbers'),
-                    style: kHeader1,
+                    AppTextUtils.getUIText(context, 'genresults_screen_hereareluckynumbers',),
                   ),
+                  SizedBox(height: 12.0,),
                   _generateNumbersList(
                     _myNumbers,
                     isDarkMode,
                   ),
+                  SizedBox(height: 12.0,),
+                  LineSeparator(themeProvider: themeProvider),
                   Text(
                     AppTextUtils.getUIText(
-                        context, 'genresults_screen_andgeneratedfields'),
-                    style: kSmallBoldText,
+                        context, 'genresults_screen_andgeneratedfields'),                    
                   ),
                   SizedBox(
                     height: 15.0,
@@ -130,10 +123,7 @@ class GenResultScreen extends StatelessWidget {
                         _myNumbers,
                         model,
                         currentTheme,
-                        model
-                            .getGenerationData()
-                            .selectedLotteryField
-                            .numberIdentifier,
+                        model.getGenerationData().selectedLotteryField.numberIdentifier,
                       ),
                     ),
                   ),
@@ -147,34 +137,72 @@ class GenResultScreen extends StatelessWidget {
   }
 
   List<Widget> _buildAllLottoGrids(
-      double boxSize,
+      double _boxSize,
       Color _boxColor,
       Color _innerBoxColor,
       List<int> _myNumbers,
-      GenerationDataProvider model,
-      dynamic currentTheme,
-      int number) {
+      GenerationDataProvider _model,
+      dynamic _currentTheme,
+      int _howManyFields) {
     List<Widget> lottoGrids = [];
 
-    for (int i = 0; i < number; i++) {
-      lottoGrids.add(_buildOneLottoGrid(
-          boxSize, _boxColor, _innerBoxColor, _myNumbers, model, currentTheme));
+    int _howManyNumbers = _myNumbers.length;
+    List<List<int>> _whichDistribution = [];    
+    
+    if (_model.getGenerationData().selectedSystem.systemIdentifier == SupportedSystems.euroJackpot) {
+      _whichDistribution = PlayedSystem.getDistributionEJ(_howManyFields, _howManyNumbers);
+    } else if (_model.getGenerationData().selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
+      _whichDistribution = PlayedSystem.getDistribution649(_howManyFields, _howManyNumbers);
+    }
+    
+    for (int i = 0; i < _howManyFields; i++) {
+      lottoGrids.add(
+        _buildOneLottoGrid(
+          _boxSize, 
+          _boxColor, 
+          _innerBoxColor, 
+          _myNumbers, 
+          _model, 
+          _currentTheme,
+          _whichDistribution,
+          i,
+        ),
+      );
     }
 
     return lottoGrids;
   }
 
-  Widget _buildOneLottoGrid(double boxSize, Color boxColor, Color innerBoxColor,
-      List<int> myNumbers, GenerationDataProvider model, dynamic currentTheme) {        
+  Widget _buildOneLottoGrid(
+    double boxSize, 
+    Color boxColor, 
+    Color innerBoxColor,
+    List<int> myNumbers, 
+    GenerationDataProvider model, 
+    dynamic currentTheme,
+    List<List<int>> whichDistribution,
+    int currentFieldNumber) {
+    
     List<int> _extraNumbers = NumberGeneratorsUtils.generateEuroJackpotExtras();
+    
+    List<int> currentField = whichDistribution[currentFieldNumber];
+    List<int> currentFieldsNumbers = [];
 
+    for (int i = 0; i < currentField.length; i++) {
+      int f = currentField[i];
+
+      if (f == 1) {
+        currentFieldsNumbers.add(myNumbers[i]);        
+      }
+    }
+     
     return Column(
       children: <Widget>[
         LottoGrid(
           boxSize: boxSize,
           boxColor: boxColor,
           innerBoxColor: innerBoxColor,
-          containedNumbers: myNumbers,
+          containedNumbers: currentFieldsNumbers,
           system: model.getGenerationData().selectedSystem,
           boxNumberStyle: kTinyText,
           selectedBoxNumberStyle: kTinyBoldText,
@@ -207,19 +235,22 @@ class GenResultScreen extends StatelessWidget {
 
   Wrap _generateNumbersList(List<int> numberList, bool isDarkMode) {
     return Wrap(
-      spacing: 3.0,
-      runSpacing: 5.0,
+      spacing: 7.0,
+      runSpacing: 7.0,
       children: numberList
           .map(
-            (singleNumber) => Chip(
-              elevation: 4.0,
+            (singleNumber) => Container(
+              height: 45,
+              width: 45,
               padding: EdgeInsets.all(10.0),
-              shape: CircleBorder(),
-              backgroundColor: isDarkMode ? kColorThreeDark : kColorOne,
-              label: Text(
-                '$singleNumber',
-                overflow: TextOverflow.ellipsis,
-                style: kSmallBoldText,
+              //shape: CircleBorder(),
+              color: isDarkMode ? kColorThreeDark : kColorOne,
+              child: Center(
+                child: Text(
+                  '$singleNumber',
+                  overflow: TextOverflow.ellipsis,
+                  style: kSmallBoldText,
+                ),
               ),
             ),
           )
@@ -227,3 +258,4 @@ class GenResultScreen extends StatelessWidget {
     );
   }
 }
+

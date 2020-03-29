@@ -10,7 +10,6 @@ import 'package:lotterynumbergen/providers/theme_provider.dart';
 import 'package:lotterynumbergen/screens/data_input_screen.dart';
 import 'package:lotterynumbergen/screens/gen_result_screen.dart';
 import 'package:lotterynumbergen/screens/settings_screen.dart';
-import 'package:lotterynumbergen/screens/start_screen.dart';
 import 'package:lotterynumbergen/utils/app_localization.dart';
 import 'package:lotterynumbergen/utils/app_themes.dart';
 import 'package:provider/provider.dart';
