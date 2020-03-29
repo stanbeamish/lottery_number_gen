@@ -1,16 +1,29 @@
-# lotterynumbergen
+# The Lottery Number Generator
 
+### Support Lottery Systems
+- EuroJackpot
+- 6 aus 49 (Germany)
+
+### Supported Languages
+- German
+- English
+- Dutch
+- Spanish
+- Italian
+
+### Supported Themes
+- Dark
+- Bright
+
+## What it does 
 A flutter application to generate random lottery numbers
 
-## Getting Started
+This app helpd you to generate winning numbers and distribute these numbers onto the desired amount of fields / squares.
 
-This project is a starting point for a Flutter application.
+![How it works](./assets/videos/lotto_numbers_generator.gif)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## What Dart packages the App uses
+- provider
+- shared_preferences
+- day_night_switch
+- flutter_icons

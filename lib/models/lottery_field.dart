@@ -5,7 +5,7 @@ class LotteryField {
   final int numberIdentifier;
   final SupportedFields name;
 
-  const LotteryField({this.name, this.numberIdentifier});
+  const LotteryField({this.name, this.numberIdentifier});  
 }
 
 const supportedLotteryFields = [
@@ -19,8 +19,4 @@ const supportedLotteryFields = [
   LotteryField(name: SupportedFields.eight, numberIdentifier: 8),
   LotteryField(name: SupportedFields.nine, numberIdentifier: 9),
   LotteryField(name: SupportedFields.ten, numberIdentifier: 10),
-  /*LotteryField(name: SupportedFields.eleven, numberIdentifier: 11),
-  LotteryField(name: SupportedFields.twelve, numberIdentifier: 12),
-  LotteryField(name: SupportedFields.thirteen, numberIdentifier: 13),
-  LotteryField(name: SupportedFields.fourteen, numberIdentifier: 14),*/
 ];

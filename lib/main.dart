@@ -78,8 +78,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Lottery Number Generator',
             theme: themeProvider.getTheme(),
-            routes: {
-              StartScreen.id: (context) => StartScreen(),
+            routes: {              
               DataInputScreen.id: (context) => DataInputScreen(),
               SettingsScreen.id: (context) => SettingsScreen(),
               GenResultScreen.id: (context) => GenResultScreen(),
