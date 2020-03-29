@@ -1,5 +1,8 @@
 # The Lottery Number Generator
 
+## apk
+apk release build can be found in folder <code>./apk/app-release.apk</code>
+
 ### Support Lottery Systems
 - EuroJackpot
 - 6 aus 49 (Germany)
