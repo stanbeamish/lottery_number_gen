@@ -92,8 +92,18 @@ class _DataInputScreenState extends State<DataInputScreen> {
       )
     ];
 
+    Image appLogo = Image(
+          image: ExactAssetImage(
+            'assets/images/icon.png',
+          ),
+          height: 12.0,
+          width: 12.0,
+          alignment: FractionalOffset.center,       
+        );
+
     return Scaffold(
       appBar: AppBar(
+        //leading: appLogo,        
         title: Text(AppTextUtils.getUIText(context, 'start_screen_title')),
         actions: <Widget>[
           GestureDetector(
