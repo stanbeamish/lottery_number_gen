@@ -20,7 +20,7 @@ A flutter application to generate random lottery numbers
 
 This app helpd you to generate winning numbers and distribute these numbers onto the desired amount of fields / squares.
 
-![How it works](./assets/videos/lotto_numbers_generator.gif)
+<img src="./assets/videos/lotto_numbers_generator.gif" height="600" />
 
 ## What Dart packages the App uses
 - provider
