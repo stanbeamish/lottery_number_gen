@@ -31,20 +31,20 @@ class GenResultScreen extends StatelessWidget {
         double boxSize =
             model.getGenerationData().selectedSystem.systemIdentifier ==
                     SupportedSystems.sixOf49
-                ? MediaQuery.of(context).size.width / 18
-                : MediaQuery.of(context).size.width / 24;
+                ? MediaQuery.of(context).size.width / 14
+                : MediaQuery.of(context).size.width / 17;
         
         int numberOfFields = model.getGenerationData().selectedLotteryField.numberIdentifier;
 
         if (numberOfFields < 2) {
-          boxSize = boxSize * 1.5;
+          boxSize = boxSize * 1.3;
         } else if (numberOfFields == 2) {
           boxSize = boxSize * 1.1;
         }
 
         bool isDarkMode = currentTheme == darkMode;
 
-        Color _boxColor = isDarkMode ? Colors.black87 : Colors.black38;
+        Color _boxColor = isDarkMode ? Colors.black26 : Colors.black38;
         Color _innerBoxColor = isDarkMode ? kColorTwo : kColorSeven;
 
         return Scaffold(

@@ -7,9 +7,6 @@ class LotteryNumber {
   const LotteryNumber({this.name, this.numberIdentifier});
 }
 
-//const minLotteryNumber = 5.0;
-//const maxLotteryNumber = 12.0;
-
 const supportedLotteryNumbers = [
   LotteryNumber(name: SupportedNumbers.five, numberIdentifier: 5),
   LotteryNumber(name: SupportedNumbers.six, numberIdentifier: 6),
@@ -17,6 +14,4 @@ const supportedLotteryNumbers = [
   LotteryNumber(name: SupportedNumbers.eight, numberIdentifier: 8),
   LotteryNumber(name: SupportedNumbers.nine, numberIdentifier: 9),
   LotteryNumber(name: SupportedNumbers.ten, numberIdentifier: 10),
-  /*LotteryNumber(name: SupportedNumbers.eleven, numberIdentifier: 11),
-  LotteryNumber(name: SupportedNumbers.twelve, numberIdentifier: 12),*/
 ];

@@ -116,7 +116,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   : Colors.white70),
               looping: true,
               onSelectedItemChanged: (int index) {
-                print("Index: $index");
                 onLanguageChanged(index, appLanguageProvider);
               },
               children: _buildLanguagePickerElements(themeProvider),

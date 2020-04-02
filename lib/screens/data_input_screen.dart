@@ -121,6 +121,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
         ],
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             child: Stepper(
