@@ -227,19 +227,19 @@ abstract class System6Of49 {
   static List<int> _row06_1 = [1, 1, 1, 1, 1, 1];
   static List<List<int>> sixIn1 = [_row06_1];
   
-  static List<int> _row07_1 = [1, 1, 0, 1, 0, 1, 1];
-  static List<int> _row07_2 = [1, 1, 1, 0, 1, 0, 1];
-  static List<int> _row07_3 = [1, 1, 1, 1, 0, 1, 0];
+  static List<int> _row07_1 = [1, 1, 0, 1, 1, 1, 1];
+  static List<int> _row07_2 = [1, 1, 1, 0, 1, 1, 1];
+  static List<int> _row07_3 = [1, 1, 1, 1, 0, 1, 1];
 
   static List<List<int>> sevenIn2 = [_row07_1, _row07_2];
   static List<List<int>> sevenIn3 = [_row07_1, _row07_2, _row07_3];
 
-  static List<int> _row08_1 = [1, 0, 1, 0, 1, 0, 1, 1];
-  static List<int> _row08_2 = [1, 1, 0, 1, 0, 1, 0, 1];
-  static List<int> _row08_3 = [1, 1, 1, 0, 1, 0, 1, 0];
-  static List<int> _row08_4 = [0, 1, 1, 1, 0, 1, 0, 1];
-  static List<int> _row08_5 = [1, 0, 1, 1, 1, 0, 1, 0];
-  static List<int> _row08_6 = [0, 1, 0, 1, 1, 1, 0, 1];
+  static List<int> _row08_1 = [1, 0, 1, 1, 1, 0, 1, 1];
+  static List<int> _row08_2 = [1, 1, 0, 1, 1, 1, 0, 1];
+  static List<int> _row08_3 = [1, 1, 1, 0, 1, 1, 1, 0];
+  static List<int> _row08_4 = [0, 1, 1, 1, 0, 1, 1, 1];
+  static List<int> _row08_5 = [1, 1, 1, 1, 1, 0, 1, 0];
+  static List<int> _row08_6 = [0, 1, 1, 1, 1, 1, 0, 1];
 
   static List<List<int>> eightIn3 = [_row08_1, _row08_3, _row08_5];
   static List<List<int>> eightIn4 = [_row08_1, _row08_3, _row08_4, _row08_6];
