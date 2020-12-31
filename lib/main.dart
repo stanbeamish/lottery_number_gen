@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:logger/logger.dart';
 import 'package:lotterynumbergen/models/lottery_field.dart';
 import 'package:lotterynumbergen/models/lottery_number.dart';
 import 'package:lotterynumbergen/models/lottery_system.dart';
@@ -15,8 +16,12 @@ import 'package:lotterynumbergen/utils/app_themes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// var logger = Logger(
+//   printer: PrettyPrinter(),
+// );
 
 void main() async {
+  // logger.i('Info message');
   WidgetsFlutterBinding.ensureInitialized();
 
   AppLanguageProvider appLanguageProvider = AppLanguageProvider();
@@ -26,14 +31,12 @@ void main() async {
     SharedPreferences.getInstance().then((preferences) {
       var darkModeOn = preferences.getBool('darkMode') ?? true;
 
-      runApp(
-        ChangeNotifierProvider<ThemeProvider>(
-          create: (_) => ThemeProvider(darkModeOn ? darkMode : lightMode),
-          child: MyApp(
-            appLanguageProvider: appLanguageProvider,
-          ),
-        )
-      );
+      runApp(ChangeNotifierProvider<ThemeProvider>(
+        create: (_) => ThemeProvider(darkModeOn ? darkMode : lightMode),
+        child: MyApp(
+          appLanguageProvider: appLanguageProvider,
+        ),
+      ));
     });
   });
 }
@@ -54,14 +57,18 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AppLanguageProvider>(create: (_) => appLanguageProvider),
-        ChangeNotifierProvider<GenerationDataProvider>(create: (_) => GenerationDataProvider(
-          GenerationData(
-            selectedSystem: supportedLotterySystems[0], // initialize with defaults
-            selectedLotteryField: supportedLotteryFields[0],
-            selectedLotteryNumber: supportedLotteryNumbers[0],
+        ChangeNotifierProvider<AppLanguageProvider>(
+            create: (_) => appLanguageProvider),
+        ChangeNotifierProvider<GenerationDataProvider>(
+          create: (_) => GenerationDataProvider(
+            GenerationData(
+              selectedSystem:
+                  supportedLotterySystems[0], // initialize with defaults
+              selectedLotteryField: supportedLotteryFields[0],
+              selectedLotteryNumber: supportedLotteryNumbers[0],
+            ),
           ),
-        ),),
+        ),
       ],
       child: Consumer<AppLanguageProvider>(
         builder: (context, model, child) {
@@ -82,7 +89,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Lottery Number Generator',
             theme: themeProvider.getTheme(),
-            routes: {              
+            routes: {
               DataInputScreen.id: (context) => DataInputScreen(),
               SettingsScreen.id: (context) => SettingsScreen(),
               GenResultScreen.id: (context) => GenResultScreen(),
@@ -94,4 +101,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

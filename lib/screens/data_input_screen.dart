@@ -32,7 +32,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
       // must set this value to the provider
       setState(() {
         generationData.selectedLotteryNumber = supportedLotteryNumbers
-                  .firstWhere((element) => element.numberIdentifier == _numCnt);
+            .firstWhere((element) => element.numberIdentifier == _numCnt);
       });
     }
     _currentStep + 1 != steps.length
@@ -92,18 +92,8 @@ class _DataInputScreenState extends State<DataInputScreen> {
       )
     ];
 
-    Image appLogo = Image(
-          image: ExactAssetImage(
-            'assets/images/icon.png',
-          ),
-          height: 12.0,
-          width: 12.0,
-          alignment: FractionalOffset.center,       
-        );
-
     return Scaffold(
       appBar: AppBar(
-        //leading: appLogo,        
         title: Text(AppTextUtils.getUIText(context, 'start_screen_title')),
         actions: <Widget>[
           GestureDetector(
@@ -130,11 +120,9 @@ class _DataInputScreenState extends State<DataInputScreen> {
               onStepContinue: () => next(steps),
               onStepCancel: cancel,
               //onStepTapped: (step) => goTo(step),
-            ),            
+            ),
           ),
-          _complete 
-          ? _buildGenerateButton()
-          : Container()
+          _complete ? _buildGenerateButton() : Container()
         ],
       ),
     );
@@ -186,7 +174,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
   Widget _buildLotteryNumberSlider(BuildContext context) {
     final generationDataProvider = Provider.of<GenerationDataProvider>(context);
-    
+
     generationData = generationDataProvider.getGenerationData();
     int minGenNum = generationData.selectedSystem.minGeneratedNumbers;
     int maxGenNum = generationData.selectedSystem.maxGeneratedNumbers;
@@ -194,8 +182,8 @@ class _DataInputScreenState extends State<DataInputScreen> {
     return Column(
       children: <Widget>[
         Card(
-          elevation: 5.0,          
-          child: Center(            
+          elevation: 5.0,
+          child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Text(
@@ -231,65 +219,94 @@ class _DataInputScreenState extends State<DataInputScreen> {
     List<LotteryField> _numberFieldsDependendOnLuckyNumbers;
 
     switch (numberOfLuckyNumbers) {
-      case 5: {
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.euroJackpot) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(0, 1).toList();
+      case 5:
+        {
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.euroJackpot) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(0, 1).toList();
+          }
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.sixOf49) {
+            // not available
+          }
         }
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          // not available
-        }
-      }
-      break;
+        break;
 
-      case 6: {
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.euroJackpot) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(1, 3).toList();
+      case 6:
+        {
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.euroJackpot) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(1, 3).toList();
+          }
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.sixOf49) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(0, 1).toList();
+          }
         }
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(0, 1).toList();
-        }
-      }
-      break;
+        break;
 
-      case 7: {
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.euroJackpot) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(2, 6).toList();
+      case 7:
+        {
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.euroJackpot) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(2, 6).toList();
+          }
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.sixOf49) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(1, 3).toList();
+          }
         }
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(1, 3).toList();
-        }
-      }
-      break;
+        break;
 
-      case 8: {
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.euroJackpot) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(3, 8).toList();
+      case 8:
+        {
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.euroJackpot) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(3, 8).toList();
+          }
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.sixOf49) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(2, 6).toList();
+          }
         }
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(2, 6).toList();
-        }
-      }
-      break;
+        break;
 
-      case 9: {
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.euroJackpot) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(5, 8).toList();
+      case 9:
+        {
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.euroJackpot) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(5, 8).toList();
+          }
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.sixOf49) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(4, 8).toList();
+          }
         }
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(4, 8).toList();
+        break;
+
+      case 10:
+        {
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.euroJackpot) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(6, 8).toList();
+          }
+          if (generationData.selectedSystem.systemIdentifier ==
+              SupportedSystems.sixOf49) {
+            _numberFieldsDependendOnLuckyNumbers =
+                supportedLotteryFields.getRange(5, 8).toList();
+          }
         }
-      }
-      break;      
-      
-      case 10: {
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.euroJackpot) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(6, 8).toList();
-        }
-        if (generationData.selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-          _numberFieldsDependendOnLuckyNumbers = supportedLotteryFields.getRange(5, 8).toList();
-        }
-      }
-      break;
+        break;
     }
 
     return Center(

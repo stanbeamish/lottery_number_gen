@@ -17,28 +17,29 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  // ignore: unused_field
   var _darkTheme = true;
 
   void onLanguageChanged(int index, AppLanguageProvider notifier) {
-    switch(index) {
+    switch (index) {
       case 0:
-      // GERMAN
+        // GERMAN
         notifier.changeLanguage(Locale('de'));
         break;
       case 1:
-      // ENGLISH
+        // ENGLISH
         notifier.changeLanguage(Locale('en'));
         break;
       case 2:
-      // SPANISH
+        // SPANISH
         notifier.changeLanguage(Locale('es'));
         break;
       case 3:
-      // DUTCH
+        // DUTCH
         notifier.changeLanguage(Locale('nl'));
         break;
       case 4:
-      // ITALIAN
+        // ITALIAN
         notifier.changeLanguage(Locale('it'));
         break;
     }
@@ -56,15 +57,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
     List<Widget> allSupportedLanguages = [];
 
     AppTextUtils.getSupportedLanguages().forEach((language) {
-      allSupportedLanguages.add(Text(
-        AppTextUtils.getUIText(context, language),
-        style: TextStyle(
-          fontSize: 18.0,
-          color: (themeProvider.getTheme() == darkMode
-              ? Colors.white70
-              : Colors.black),
+      allSupportedLanguages.add(
+        Text(
+          AppTextUtils.getUIText(context, language),
+          style: TextStyle(
+            fontSize: 18.0,
+            color: (themeProvider.getTheme() == darkMode
+                ? Colors.white70
+                : Colors.black),
+          ),
         ),
-      ),);
+      );
     });
 
     return allSupportedLanguages;
@@ -77,12 +80,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppTextUtils.getUIText(context, 'settings_screen_title'),),
+        title: Text(
+          AppTextUtils.getUIText(context, 'settings_screen_title'),
+        ),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
-            title: Text(AppTextUtils.getUIText(context, 'settings_screen_theme')),
+            title:
+                Text(AppTextUtils.getUIText(context, 'settings_screen_theme')),
             contentPadding: const EdgeInsets.only(left: 16.0),
             trailing: Transform.scale(
               scale: 0.4,
@@ -102,18 +108,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           ListTile(
-            title: Text(AppTextUtils.getUIText(context, 'settings_screen_language')),
+            title: Text(
+                AppTextUtils.getUIText(context, 'settings_screen_language')),
           ),
           Container(
             height: 110,
             child: CupertinoPicker(
+              // TODO: Preset the current language
               useMagnifier: true,
               diameterRatio: 0.8,
               magnification: 1.2,
-              itemExtent: 30.0,
+              itemExtent: 24.0,
               backgroundColor: (themeProvider.getTheme() == darkMode
                   ? Colors.black38
-                  : Colors.white70),
+                  : Color(0xFFEFEEEF)),
               looping: true,
               onSelectedItemChanged: (int index) {
                 onLanguageChanged(index, appLanguageProvider);

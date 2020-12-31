@@ -4,39 +4,25 @@ import 'package:lotterynumbergen/utils/app_colors.dart';
 import 'package:lotterynumbergen/utils/app_styles.dart';
 
 class GridUtils {
-  static List<int> of49One = [1, 2, 3, 4, 5, 6, 7];
-  static List<int> of49Two = [8, 9, 10, 11, 12, 13, 14];
-  static List<int> of49Three = [15, 16, 17, 18, 19, 20, 21];
-  static List<int> of49Four = [22, 23, 24, 25, 26, 27, 28];
-  static List<int> of49Five = [29, 30, 31, 32, 33, 34, 35];
-  static List<int> of49Six = [36, 37, 38, 39, 40, 41, 42];
-  static List<int> of49Seven = [43, 44, 45, 46, 47, 48, 49];
-
-  static List<int> ejOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  static List<int> ejTwo = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-  static List<int> ejThree = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-  static List<int> ejFour = [31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
-  static List<int> ejFive = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50];
-
   static List<List<int>> lottoGridOf49 = [
-    of49One,
-    of49Two,
-    of49Three,
-    of49Four,
-    of49Five,
-    of49Six,
-    of49Seven
+    List<int>.generate(7, (i) => i + 1),
+    List<int>.generate(7, (i) => i + 8),
+    List<int>.generate(7, (i) => i + 15),
+    List<int>.generate(7, (i) => i + 22),
+    List<int>.generate(7, (i) => i + 29),
+    List<int>.generate(7, (i) => i + 36),
+    List<int>.generate(7, (i) => i + 49),
   ];
 
   static List<List<int>> lottoGridEuroJackpot = [
-    ejOne,
-    ejTwo,
-    ejThree,
-    ejFour,
-    ejFive
+    List<int>.generate(10, (i) => i + 1),
+    List<int>.generate(10, (i) => i + 11),
+    List<int>.generate(10, (i) => i + 21),
+    List<int>.generate(10, (i) => i + 31),
+    List<int>.generate(10, (i) => i + 41),
   ];
 
-  static List<int> lottoEuro2Of10Grid = ejOne;
+  static List<int> lottoEuro2Of10Grid = List<int>.generate(10, (i) => i + 1);
 }
 
 class LottoGrid extends StatelessWidget {
@@ -142,14 +128,15 @@ class SingleBox extends StatelessWidget {
   final TextStyle numberStyle;
   final List<int> containedNumbers;
 
-  const SingleBox(
-      {this.boxText,
-      this.boxColor = kColorThree,
-      this.innerBoxColor = kColorSeven,
-      this.boxSize,
-      this.numberStyle = kSmallText,
-      this.selectedNumberStyle = kSmallBoldText,
-      @required this.containedNumbers});
+  const SingleBox({
+    this.boxText,
+    this.boxColor = kColorThree,
+    this.innerBoxColor = kColorSeven,
+    this.boxSize,
+    this.numberStyle = kSmallText,
+    this.selectedNumberStyle = kSmallBoldText,
+    @required this.containedNumbers,
+  });
 
   @override
   Widget build(BuildContext context) {
