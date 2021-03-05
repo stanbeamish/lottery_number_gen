@@ -1,3 +1,4 @@
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:day_night_switch/day_night_switch.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     AppTextUtils.getSupportedLanguages().forEach((language) {
       allSupportedLanguages.add(
         Text(
-          AppTextUtils.getUIText(context, language),
+          AppTextUtils.getUIText(context, language)!,
           style: TextStyle(
             fontSize: 18.0,
             color: (themeProvider.getTheme() == darkMode
@@ -81,14 +82,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppTextUtils.getUIText(context, 'settings_screen_title'),
+          AppTextUtils.getUIText(context, 'settings_screen_title')!,
         ),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
             title:
-                Text(AppTextUtils.getUIText(context, 'settings_screen_theme')),
+                Text(AppTextUtils.getUIText(context, 'settings_screen_theme')!),
             contentPadding: const EdgeInsets.only(left: 16.0),
             trailing: Transform.scale(
               scale: 0.4,
@@ -109,12 +110,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             title: Text(
-                AppTextUtils.getUIText(context, 'settings_screen_language')),
+                AppTextUtils.getUIText(context, 'settings_screen_language')!),
           ),
           Container(
             height: 110,
             child: CupertinoPicker(
-              // TODO: Preset the current language
               useMagnifier: true,
               diameterRatio: 0.8,
               magnification: 1.2,

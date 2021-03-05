@@ -1,8 +1,8 @@
 enum SupportedNumbers { five, six, seven, eight, nine, ten }
 
 class LotteryNumber {
-  final int numberIdentifier;
-  final SupportedNumbers name;
+  final int? numberIdentifier;
+  final SupportedNumbers? name;
 
   const LotteryNumber({this.name, this.numberIdentifier});
 }

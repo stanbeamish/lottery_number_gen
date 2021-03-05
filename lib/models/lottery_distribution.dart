@@ -1,6 +1,6 @@
 class PlayedSystem {
-  final int howManyFields;
-  final int howManyNumbers;
+  final int? howManyFields;
+  final int? howManyNumbers;
 
   PlayedSystem({
     this.howManyFields,

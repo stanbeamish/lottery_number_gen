@@ -2,8 +2,8 @@
 enum SupportedFields { one, two, three, four, five, six, seven, eight, nine, ten }
 
 class LotteryField {
-  final int numberIdentifier;
-  final SupportedFields name;
+  final int? numberIdentifier;
+  final SupportedFields? name;
 
   const LotteryField({this.name, this.numberIdentifier});  
 }

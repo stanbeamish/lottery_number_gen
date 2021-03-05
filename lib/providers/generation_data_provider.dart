@@ -19,9 +19,9 @@ class GenerationDataProvider extends ChangeNotifier {
 }
 
 class GenerationData {
-  LotteryNumber selectedLotteryNumber;
-  LotteryField selectedLotteryField;
-  LotterySystem selectedSystem;
+  LotteryNumber? selectedLotteryNumber;
+  LotteryField? selectedLotteryField;
+  LotterySystem? selectedSystem;
 
   GenerationData({
     this.selectedLotteryNumber,

@@ -11,14 +11,14 @@ class AppLocalizations {
 
   // Helper method to keep the code in the widgets concise
   // Localizations are accessed using an InheritedWidget "of" syntax
-  static AppLocalizations of(BuildContext context) {
+  static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
   // Static member to have a simple access to the delete from the MaterialApp
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
-  Map<String, String> _localizedStrings;
+  late Map<String, String> _localizedStrings;
 
   Future<bool> load() async {
     // load the language JSON file from the i18n folder
@@ -33,7 +33,7 @@ class AppLocalizations {
   }
 
   // method is called from every widget which needs localized text
-  String translate(String key) {
+  String? translate(String key) {
     if (_localizedStrings[key] != null) {
       return _localizedStrings[key];
     }

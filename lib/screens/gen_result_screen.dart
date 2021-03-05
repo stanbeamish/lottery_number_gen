@@ -11,6 +11,7 @@ import 'package:lotterynumbergen/utils/app_themes.dart';
 import 'package:lotterynumbergen/widgets/line_separator.dart';
 import 'package:lotterynumbergen/widgets/lotto_grid.dart';
 import 'package:provider/provider.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 
 class GenResultScreen extends StatelessWidget {
@@ -33,8 +34,9 @@ class GenResultScreen extends StatelessWidget {
                     SupportedSystems.sixOf49
                 ? MediaQuery.of(context).size.width / 14
                 : MediaQuery.of(context).size.width / 17;
-        
-        int numberOfFields = model.getGenerationData().selectedLotteryField.numberIdentifier;
+
+        int numberOfFields =
+            model.getGenerationData().selectedLotteryField.numberIdentifier;
 
         if (numberOfFields < 2) {
           boxSize = boxSize * 1.3;
@@ -50,7 +52,7 @@ class GenResultScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-                AppTextUtils.getUIText(context, 'genresults_screen_title')),
+                AppTextUtils.getUIText(context, 'genresults_screen_title')!),
           ),
           body: SingleChildScrollView(
             child: Container(
@@ -61,7 +63,7 @@ class GenResultScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Text(AppTextUtils.getUIText(
-                      context, 'genresults_screen_wantplay')),
+                      context, 'genresults_screen_wantplay')!),
                   Card(
                     elevation: 5.0,
                     margin: const EdgeInsets.all(8.0),
@@ -77,7 +79,7 @@ class GenResultScreen extends StatelessWidget {
                     ),
                   ),
                   Text(AppTextUtils.getUIText(
-                      context, 'genresults_screen_youwant')),
+                      context, 'genresults_screen_youwant')!),
                   Card(
                       child: ListTile(
                           leading: Icon(MaterialCommunityIcons
@@ -92,22 +94,29 @@ class GenResultScreen extends StatelessWidget {
                           ))),
                   Text(
                     AppTextUtils.getUIText(
-                        context, 'genresults_screen_numbers'),
+                        context, 'genresults_screen_numbers')!,
                   ),
                   LineSeparator(themeProvider: themeProvider),
                   Text(
-                    AppTextUtils.getUIText(context, 'genresults_screen_hereareluckynumbers',),
+                    AppTextUtils.getUIText(
+                      context,
+                      'genresults_screen_hereareluckynumbers',
+                    )!,
                   ),
-                  SizedBox(height: 12.0,),
+                  SizedBox(
+                    height: 12.0,
+                  ),
                   _generateNumbersList(
                     _myNumbers,
                     isDarkMode,
                   ),
-                  SizedBox(height: 12.0,),
+                  SizedBox(
+                    height: 12.0,
+                  ),
                   LineSeparator(themeProvider: themeProvider),
                   Text(
                     AppTextUtils.getUIText(
-                        context, 'genresults_screen_andgeneratedfields'),                    
+                        context, 'genresults_screen_andgeneratedfields')!,
                   ),
                   SizedBox(
                     height: 15.0,
@@ -123,7 +132,10 @@ class GenResultScreen extends StatelessWidget {
                         _myNumbers,
                         model,
                         currentTheme,
-                        model.getGenerationData().selectedLotteryField.numberIdentifier,
+                        model
+                            .getGenerationData()
+                            .selectedLotteryField
+                            .numberIdentifier,
                       ),
                     ),
                   ),
@@ -147,22 +159,26 @@ class GenResultScreen extends StatelessWidget {
     List<Widget> lottoGrids = [];
 
     int _howManyNumbers = _myNumbers.length;
-    List<List<int>> _whichDistribution = [];    
-    
-    if (_model.getGenerationData().selectedSystem.systemIdentifier == SupportedSystems.euroJackpot) {
-      _whichDistribution = PlayedSystem.getDistributionEJ(_howManyFields, _howManyNumbers);
-    } else if (_model.getGenerationData().selectedSystem.systemIdentifier == SupportedSystems.sixOf49) {
-      _whichDistribution = PlayedSystem.getDistribution649(_howManyFields, _howManyNumbers);
+    List<List<int>> _whichDistribution = [];
+
+    if (_model.getGenerationData().selectedSystem.systemIdentifier ==
+        SupportedSystems.euroJackpot) {
+      _whichDistribution =
+          PlayedSystem.getDistributionEJ(_howManyFields, _howManyNumbers);
+    } else if (_model.getGenerationData().selectedSystem.systemIdentifier ==
+        SupportedSystems.sixOf49) {
+      _whichDistribution =
+          PlayedSystem.getDistribution649(_howManyFields, _howManyNumbers);
     }
-    
+
     for (int i = 0; i < _howManyFields; i++) {
       lottoGrids.add(
         _buildOneLottoGrid(
-          _boxSize, 
-          _boxColor, 
-          _innerBoxColor, 
-          _myNumbers, 
-          _model, 
+          _boxSize,
+          _boxColor,
+          _innerBoxColor,
+          _myNumbers,
+          _model,
           _currentTheme,
           _whichDistribution,
           i,
@@ -174,17 +190,16 @@ class GenResultScreen extends StatelessWidget {
   }
 
   Widget _buildOneLottoGrid(
-    double boxSize, 
-    Color boxColor, 
-    Color innerBoxColor,
-    List<int> myNumbers, 
-    GenerationDataProvider model, 
-    dynamic currentTheme,
-    List<List<int>> whichDistribution,
-    int currentFieldNumber) {
-    
+      double boxSize,
+      Color boxColor,
+      Color innerBoxColor,
+      List<int> myNumbers,
+      GenerationDataProvider model,
+      dynamic currentTheme,
+      List<List<int>> whichDistribution,
+      int currentFieldNumber) {
     List<int> _extraNumbers = NumberGeneratorsUtils.generateEuroJackpotExtras();
-    
+
     List<int> currentField = whichDistribution[currentFieldNumber];
     List<int> currentFieldsNumbers = [];
 
@@ -192,10 +207,10 @@ class GenResultScreen extends StatelessWidget {
       int f = currentField[i];
 
       if (f == 1) {
-        currentFieldsNumbers.add(myNumbers[i]);        
+        currentFieldsNumbers.add(myNumbers[i]);
       }
     }
-     
+
     return Column(
       children: <Widget>[
         LottoGrid(
@@ -219,8 +234,8 @@ class GenResultScreen extends StatelessWidget {
     );
   }
 
-  LottoGrid _buildEuroJackpotExtraGrid(double boxSize, Color boxColor,
-      Color innerBoxColor, List<int> extraNumbers) {
+  LottoGrid _buildEuroJackpotExtraGrid(double boxSize, Color? boxColor,
+      Color? innerBoxColor, List<int> extraNumbers) {
     return LottoGrid(
       boxSize: boxSize,
       boxColor: boxColor,
@@ -258,4 +273,3 @@ class GenResultScreen extends StatelessWidget {
     );
   }
 }
-

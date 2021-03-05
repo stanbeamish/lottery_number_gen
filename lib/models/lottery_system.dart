@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 enum SupportedSystems { euroJackpot, sixOf49 } // euroMillions etc. to follow
 
 class LotterySystem {
@@ -10,31 +8,25 @@ class LotterySystem {
   final int maxGeneratedNumbers;
 
   const LotterySystem({
-    @required this.name, 
-    @required this.systemIdentifier, 
-    @required this.maxNumber,
-    @required this.minGeneratedNumbers,
-    @required this.maxGeneratedNumbers,
+    required this.name,
+    required this.systemIdentifier,
+    required this.maxNumber,
+    required this.minGeneratedNumbers,
+    required this.maxGeneratedNumbers,
   });
 }
 
 const supportedLotterySystems = [
   LotterySystem(
-    name: 'EuroJackpot',
-    maxNumber: 50,
-    systemIdentifier: SupportedSystems.euroJackpot,
-    minGeneratedNumbers: 5,
-    maxGeneratedNumbers: 10
-  ),
+      name: 'EuroJackpot',
+      maxNumber: 50,
+      systemIdentifier: SupportedSystems.euroJackpot,
+      minGeneratedNumbers: 5,
+      maxGeneratedNumbers: 10),
   LotterySystem(
-    name: '6 aus 49',
-    maxNumber: 49,
-    systemIdentifier: SupportedSystems.sixOf49,
-    minGeneratedNumbers: 6,
-    maxGeneratedNumbers: 10
-  ),
+      name: '6 aus 49',
+      maxNumber: 49,
+      systemIdentifier: SupportedSystems.sixOf49,
+      minGeneratedNumbers: 6,
+      maxGeneratedNumbers: 10),
 ];
-
-
-
-    

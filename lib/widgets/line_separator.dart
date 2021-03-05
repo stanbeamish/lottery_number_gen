@@ -5,8 +5,8 @@ import 'package:lotterynumbergen/utils/app_themes.dart';
 
 class LineSeparator extends StatelessWidget {
   const LineSeparator({
-    Key key,
-    @required this.themeProvider,
+    Key? key,
+    required this.themeProvider,
   }) : super(key: key);
 
   final ThemeProvider themeProvider;

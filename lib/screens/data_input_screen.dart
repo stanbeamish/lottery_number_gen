@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:lotterynumbergen/models/lottery_field.dart';
 import 'package:lotterynumbergen/models/lottery_number.dart';
@@ -23,9 +24,9 @@ class _DataInputScreenState extends State<DataInputScreen> {
   bool _complete = false;
 
   double _numCnt = 7.0;
-  LotterySystem _lotSystem = supportedLotterySystems[0];
-  LotteryField _lotField = supportedLotteryFields[0];
-  GenerationData generationData;
+  LotterySystem? _lotSystem = supportedLotterySystems[0];
+  LotteryField? _lotField = supportedLotteryFields[0];
+  late GenerationData generationData;
 
   next(List<Step> steps) {
     if (_currentStep == 1) {
@@ -60,41 +61,41 @@ class _DataInputScreenState extends State<DataInputScreen> {
     List<Step> steps = [
       Step(
         title: Text(
-          AppTextUtils.getUIText(context, 'start_screen_1_title'),
+          AppTextUtils.getUIText(context, 'start_screen_1_title')!,
         ),
         content: _buildLottoSystemSelection(),
         state: _currentStep == 0 ? StepState.indexed : StepState.complete,
         subtitle: Text(
-          AppTextUtils.getUIText(context, 'start_screen_1_text'),
+          AppTextUtils.getUIText(context, 'start_screen_1_text')!,
         ),
       ),
       Step(
         title: Text(
-          AppTextUtils.getUIText(context, 'start_screen_2_title'),
+          AppTextUtils.getUIText(context, 'start_screen_2_title')!,
         ),
         content: _buildLotteryNumberSlider(context),
         state: (_currentStep > 1) ? StepState.complete : StepState.indexed,
         subtitle: Text(
-          AppTextUtils.getUIText(context, 'start_screen_2_text'),
+          AppTextUtils.getUIText(context, 'start_screen_2_text')!,
         ),
       ),
       Step(
         title: Text(
-          AppTextUtils.getUIText(context, 'start_screen_3_title'),
+          AppTextUtils.getUIText(context, 'start_screen_3_title')!,
         ),
         content: _buildLotteryFieldSelection(_numCnt.toInt()),
         state: (_currentStep > 2 || _complete == true)
             ? StepState.complete
             : StepState.indexed,
         subtitle: Text(
-          AppTextUtils.getUIText(context, 'start_screen_3_text'),
+          AppTextUtils.getUIText(context, 'start_screen_3_text')!,
         ),
       )
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppTextUtils.getUIText(context, 'start_screen_title')),
+        title: Text(AppTextUtils.getUIText(context, 'start_screen_title')!),
         actions: <Widget>[
           GestureDetector(
             onTap: () {
@@ -150,17 +151,17 @@ class _DataInputScreenState extends State<DataInputScreen> {
                 Radio(
                   value: system,
                   groupValue: _lotSystem,
-                  onChanged: (value) {
+                  onChanged: (dynamic value) {
                     setState(() {
                       _lotSystem = value;
                       generationData.selectedSystem = _lotSystem;
-                      if (_lotSystem.minGeneratedNumbers > _numCnt) {
+                      if (_lotSystem!.minGeneratedNumbers > _numCnt) {
                         _numCnt = 8;
                       }
                       generationData.selectedLotteryNumber =
                           supportedLotteryNumbers.firstWhere((element) =>
                               element.numberIdentifier ==
-                              _lotSystem.minGeneratedNumbers);
+                              _lotSystem!.minGeneratedNumbers);
                     });
                   },
                 ),
@@ -176,8 +177,8 @@ class _DataInputScreenState extends State<DataInputScreen> {
     final generationDataProvider = Provider.of<GenerationDataProvider>(context);
 
     generationData = generationDataProvider.getGenerationData();
-    int minGenNum = generationData.selectedSystem.minGeneratedNumbers;
-    int maxGenNum = generationData.selectedSystem.maxGeneratedNumbers;
+    int minGenNum = generationData.selectedSystem!.minGeneratedNumbers;
+    int maxGenNum = generationData.selectedSystem!.maxGeneratedNumbers;
 
     return Column(
       children: <Widget>[
@@ -216,17 +217,17 @@ class _DataInputScreenState extends State<DataInputScreen> {
     final generationDataProvider = Provider.of<GenerationDataProvider>(context);
     generationData = generationDataProvider.getGenerationData();
 
-    List<LotteryField> _numberFieldsDependendOnLuckyNumbers;
+    late List<LotteryField> _numberFieldsDependendOnLuckyNumbers;
 
     switch (numberOfLuckyNumbers) {
       case 5:
         {
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.euroJackpot) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(0, 1).toList();
           }
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.sixOf49) {
             // not available
           }
@@ -235,12 +236,12 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
       case 6:
         {
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.euroJackpot) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(1, 3).toList();
           }
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.sixOf49) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(0, 1).toList();
@@ -250,12 +251,12 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
       case 7:
         {
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.euroJackpot) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(2, 6).toList();
           }
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.sixOf49) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(1, 3).toList();
@@ -265,12 +266,12 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
       case 8:
         {
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.euroJackpot) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(3, 8).toList();
           }
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.sixOf49) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(2, 6).toList();
@@ -280,12 +281,12 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
       case 9:
         {
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.euroJackpot) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(5, 8).toList();
           }
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.sixOf49) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(4, 8).toList();
@@ -295,12 +296,12 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
       case 10:
         {
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.euroJackpot) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(6, 8).toList();
           }
-          if (generationData.selectedSystem.systemIdentifier ==
+          if (generationData.selectedSystem!.systemIdentifier ==
               SupportedSystems.sixOf49) {
             _numberFieldsDependendOnLuckyNumbers =
                 supportedLotteryFields.getRange(5, 8).toList();
@@ -323,7 +324,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
               Radio(
                 value: field,
                 groupValue: _lotField,
-                onChanged: (value) {
+                onChanged: (dynamic value) {
                   setState(() {
                     _lotField = value;
                     generationData.selectedLotteryField = _lotField;
@@ -343,14 +344,14 @@ class _DataInputScreenState extends State<DataInputScreen> {
       children: <Widget>[
         Container(
           child: Expanded(
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, GenResultScreen.id);
               },
               child: Container(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
-                  AppTextUtils.getUIText(context, 'start_screen_btn_generate'),
+                  AppTextUtils.getUIText(context, 'start_screen_btn_generate')!,
                   style: kButtonText,
                 ),
               ),

@@ -3,7 +3,7 @@ import 'package:lotterynumbergen/models/lottery_system.dart';
 
 class NumberGeneratorsUtils {
   static List<int> generateNumbers(int howMany, LotterySystem system) {
-    List<int> results = List<int>();    
+    List<int> results = <int>[];
     int max = system.maxNumber;
 
     for (int i = 0; i < howMany; i++) {
@@ -22,10 +22,10 @@ class NumberGeneratorsUtils {
   }
 
   static List<int> generateEuroJackpotExtras() {
-    List<int> results = List<int>();
+    List<int> results = <int>[];
 
     for (int i = 0; i < 2; i++) {
-      int a = _getRandomNumber(10);      
+      int a = _getRandomNumber(10);
 
       if (results.contains(a)) {
         i--;
@@ -42,5 +42,4 @@ class NumberGeneratorsUtils {
     int a = r.nextInt(max - 1) + 1;
     return a;
   }
-  
 }

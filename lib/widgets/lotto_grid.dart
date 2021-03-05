@@ -28,29 +28,29 @@ class GridUtils {
 class LottoGrid extends StatelessWidget {
   final List<int> containedNumbers;
   final double boxSize;
-  final Color boxColor;
-  final Color innerBoxColor;
-  final TextStyle boxNumberStyle;
-  final TextStyle selectedBoxNumberStyle;
-  final LotterySystem system;
+  final Color? boxColor;
+  final Color? innerBoxColor;
+  final TextStyle? boxNumberStyle;
+  final TextStyle? selectedBoxNumberStyle;
+  final LotterySystem? system;
   final bool isEuroJackpotExtraGrid;
 
   const LottoGrid({
-    @required this.containedNumbers,
+    required this.containedNumbers,
     this.boxColor = kColorSix,
     this.innerBoxColor = kColorSeven,
     this.boxSize = 22.0,
     this.boxNumberStyle,
     this.selectedBoxNumberStyle,
-    @required this.system,
+    required this.system,
     this.isEuroJackpotExtraGrid = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<List<int>> currentSystemGrid;
+    late List<List<int>> currentSystemGrid;
 
-    switch (system.systemIdentifier) {
+    switch (system!.systemIdentifier) {
       case SupportedSystems.sixOf49:
         currentSystemGrid = GridUtils.lottoGridOf49;
         break;
@@ -120,12 +120,12 @@ class LottoGrid extends StatelessWidget {
 }
 
 class SingleBox extends StatelessWidget {
-  final int boxText;
-  final Color boxColor;
-  final double boxSize;
-  final Color innerBoxColor;
-  final TextStyle selectedNumberStyle;
-  final TextStyle numberStyle;
+  final int? boxText;
+  final Color? boxColor;
+  final double? boxSize;
+  final Color? innerBoxColor;
+  final TextStyle? selectedNumberStyle;
+  final TextStyle? numberStyle;
   final List<int> containedNumbers;
 
   const SingleBox({
@@ -135,7 +135,7 @@ class SingleBox extends StatelessWidget {
     this.boxSize,
     this.numberStyle = kSmallText,
     this.selectedNumberStyle = kSmallBoldText,
-    @required this.containedNumbers,
+    required this.containedNumbers,
   });
 
   @override
