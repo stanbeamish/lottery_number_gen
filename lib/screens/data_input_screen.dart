@@ -230,7 +230,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
             // not available
           }
         }
-        break;
+        continue setLotField;
 
       case 6:
         {
@@ -245,7 +245,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
                 supportedLotteryFields.getRange(0, 1).toList();
           }
         }
-        break;
+        continue setLotField;
 
       case 7:
         {
@@ -260,7 +260,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
                 supportedLotteryFields.getRange(1, 3).toList();
           }
         }
-        break;
+        continue setLotField;
 
       case 8:
         {
@@ -275,7 +275,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
                 supportedLotteryFields.getRange(2, 6).toList();
           }
         }
-        break;
+        continue setLotField;
 
       case 9:
         {
@@ -290,7 +290,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
                 supportedLotteryFields.getRange(4, 8).toList();
           }
         }
-        break;
+        continue setLotField;
 
       case 10:
         {
@@ -305,7 +305,11 @@ class _DataInputScreenState extends State<DataInputScreen> {
                 supportedLotteryFields.getRange(5, 8).toList();
           }
         }
-        break;
+        continue setLotField;
+
+      setLotField:
+      default:
+        _lotField = _numberFieldsDependendOnLuckyNumbers[0];
     }
 
     return Center(
@@ -321,7 +325,8 @@ class _DataInputScreenState extends State<DataInputScreen> {
               ),
               Radio(
                 value: field,
-                groupValue: _lotField,
+                groupValue:
+                    _lotField ?? _numberFieldsDependendOnLuckyNumbers[0],
                 onChanged: (dynamic value) {
                   setState(() {
                     _lotField = value;
