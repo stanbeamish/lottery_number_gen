@@ -11,8 +11,6 @@ import 'package:lotterynumbergen/utils/app_themes.dart';
 import 'package:lotterynumbergen/widgets/line_separator.dart';
 import 'package:lotterynumbergen/widgets/lotto_grid.dart';
 import 'package:provider/provider.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_icons/flutter_icons.dart';
 
 class GenResultScreen extends StatelessWidget {
   static String id = 'genresultscreen';
@@ -71,7 +69,7 @@ class GenResultScreen extends StatelessWidget {
                         ? Colors.grey
                         : Colors.grey[300],
                     child: ListTile(
-                      leading: Icon(MaterialCommunityIcons.chess_queen),
+                      leading: Icon(Icons.run_circle),
                       title: Text(
                         model.getGenerationData().selectedSystem.name,
                         style: kHeader1,
@@ -82,8 +80,7 @@ class GenResultScreen extends StatelessWidget {
                       context, 'genresults_screen_youwant')!),
                   Card(
                       child: ListTile(
-                          leading: Icon(MaterialCommunityIcons
-                              .numeric_9_plus_box_multiple_outline),
+                          leading: Icon(Icons.format_list_numbered_outlined),
                           title: Text(
                             model
                                 .getGenerationData()

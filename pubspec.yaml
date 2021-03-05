@@ -14,8 +14,7 @@ dependencies:
 
   provider: ^5.0.0
   shared_preferences: ^2.0.3
-  flutter_icons: ^1.1.0
-  day_night_switch: ^0.0.2+1
+  flutter_switch: ^0.2.2  
   logger: ^0.9.4
 
   cupertino_icons: ^1.0.2

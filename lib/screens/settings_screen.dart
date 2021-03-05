@@ -1,5 +1,3 @@
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:day_night_switch/day_night_switch.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lotterynumbergen/providers/language_provider.dart';
@@ -92,12 +90,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Text(AppTextUtils.getUIText(context, 'settings_screen_theme')!),
             contentPadding: const EdgeInsets.only(left: 16.0),
             trailing: Transform.scale(
-              scale: 0.4,
-              child: DayNightSwitch(
-                sunColor: kColorOne,
-                dayColor: kColorFour,
-                nightColor: kColorOne,
-                moonColor: kColorFour,
+              scale: 0.8,
+              child: Switch(
+                activeColor: kColorOne,
+                activeTrackColor: kColorSix,
+                inactiveThumbColor: kColorSix,
+                inactiveTrackColor: Colors.black,
                 value: themeProvider.getTheme() == darkMode ? true : false,
                 onChanged: (value) {
                   setState(() {

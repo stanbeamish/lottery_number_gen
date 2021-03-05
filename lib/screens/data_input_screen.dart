@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:lotterynumbergen/models/lottery_field.dart';
 import 'package:lotterynumbergen/models/lottery_number.dart';
 import 'package:lotterynumbergen/models/lottery_system.dart';
@@ -102,7 +100,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
               Navigator.pushNamed(context, SettingsScreen.id);
             },
             child: Icon(
-              MaterialCommunityIcons.cogs,
+              Icons.settings,
               size: 28.0,
             ),
           ),
