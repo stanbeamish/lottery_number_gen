@@ -309,7 +309,15 @@ class _DataInputScreenState extends State<DataInputScreen> {
 
       setLotField:
       default:
-        _lotField = _numberFieldsDependendOnLuckyNumbers[0];
+        if (_lotField == null) {
+          _lotField = _numberFieldsDependendOnLuckyNumbers[0];
+        } else {
+          if (!_numberFieldsDependendOnLuckyNumbers.contains(_lotField)) {
+            _lotField = _numberFieldsDependendOnLuckyNumbers[0];
+          }
+        }
+
+        break;
     }
 
     return Center(
@@ -325,8 +333,7 @@ class _DataInputScreenState extends State<DataInputScreen> {
               ),
               Radio(
                 value: field,
-                groupValue:
-                    _lotField ?? _numberFieldsDependendOnLuckyNumbers[0],
+                groupValue: _lotField,
                 onChanged: (dynamic value) {
                   setState(() {
                     _lotField = value;
